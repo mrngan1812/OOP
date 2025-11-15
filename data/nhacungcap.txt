@@ -1,0 +1,13 @@
+NCC001|Cong ty Giay ABC|0901111111|123 Duong ABC, Quan 1
+NCC002|Cong ty Dep XYZ|0902222222|456 Duong XYZ, Quan 2
+NCC003|Cong ty Giay Dep DEF|0903333333|789 Duong DEF, Quan 3
+NCC004|Cong ty San pham GHI|0904444444|321 Duong GHI, Quan 4
+NCC005|Cong ty Giay JKL|0905555555|654 Duong JKL, Quan 5
+NCC006|Cong ty Dep MNO|0906666666|987 Duong MNO, Quan 6
+NCC007|Cong ty Giay Dep PQR|0907777777|147 Duong PQR, Quan 7
+NCC008|Cong ty San pham STU|0908888888|258 Duong STU, Quan 8
+NCC009|Cong ty Giay VWX|0909999999|369 Duong VWX, Quan 9
+NCC010|Cong ty Dep YZ|0900000000|741 Duong YZ, Quan 10
+NCC011|Cong ty Giay Dep AA|0901010101|852 Duong AA, Quan 11
+NCC012|Cong ty San pham BB|0902020202|963 Duong BB, Quan 12
+

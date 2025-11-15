@@ -1,0 +1,16 @@
+1|SP001|Giay Nike Air Max|50|2500000|15.5|Da cao cap
+1|SP002|Giay Adidas Ultraboost|45|3200000|16.0|Da thuong
+1|SP003|Giay Puma Speedcat|40|1800000|14.5|Da tong hop
+1|SP004|Giay Converse Chuck|60|1200000|12.0|Vai
+1|SP005|Giay Vans Old Skool|55|1500000|13.0|Vai
+1|SP006|Giay Biti's Hunter|70|800000|11.5|Da nhan tao
+1|SP007|Giay Ananas Classic|65|900000|12.5|Da nhan tao
+1|SP008|Giay Reebok Classic|50|2000000|14.0|Da thuong
+1|SP009|Giay New Balance 574|48|2200000|15.0|Da tong hop
+1|SP010|Giay Fila Disruptor|42|1900000|13.5|Da nhan tao
+2|SP011|Dep quai ngang cao su|80|150000|0|Cao su
+2|SP012|Dep quai doc da|75|200000|0|Da thuong
+2|SP013|Dep xo ngon nhua|90|100000|0|Nhua
+2|SP014|Dep quai ngang da|70|250000|0|Da cao cap
+2|SP015|Dep tong cao su|85|120000|0|Cao su
+

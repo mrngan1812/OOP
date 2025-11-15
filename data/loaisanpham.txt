@@ -1,0 +1,13 @@
+L001|Giay the thao
+L002|Giay da bong
+L003|Giay chay bo
+L004|Dep quai ngang
+L005|Dep quai doc
+L006|Dep xo ngon
+L007|Giay cao got
+L008|Giay boot
+L009|Dep deo chan
+L010|Giay sandal
+L011|Giay leo nui
+L012|Dep tong
+

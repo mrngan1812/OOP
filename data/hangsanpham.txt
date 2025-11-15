@@ -1,0 +1,13 @@
+H001|Nike|My
+H002|Adidas|Duc
+H003|Puma|Duc
+H004|Converse|My
+H005|Vans|My
+H006|Biti's|Viet Nam
+H007|Ananas|Viet Nam
+H008|Vascara|Viet Nam
+H009|Reebok|My
+H010|New Balance|My
+H011|Fila|My
+H012|Skechers|My
+
