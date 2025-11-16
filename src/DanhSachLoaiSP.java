@@ -32,19 +32,14 @@ public class DanhSachLoaiSP {
         }
         System.out.println("\t====== Danh sach loai san pham ======");
         for (int i = 0; i < n; i++) {
-            LoaiSP l = mang[i];
-            System.out.printf("%s | %s%n", l.getMaLoai(), l.getTenLoai());
+            mang[i].xuat();
         }
     }
 
     // ===== Them loai san pham =====
     public void them() {
-        Scanner sc = new Scanner(System.in);
         LoaiSP l = new LoaiSP();
-        System.out.print("Nhap ma loai: ");
-        l.setMaLoai(sc.nextLine());
-        System.out.print("Nhap ten loai: ");
-        l.setTenLoai(sc.nextLine());
+        l.nhap();
         damBaoSucChua();
         mang[n++] = l;
         System.out.println("\tDanh sach loai san pham sau khi them:");
@@ -105,7 +100,7 @@ public class DanhSachLoaiSP {
             LoaiSP l = mang[i];
             if (l.getMaLoai().equalsIgnoreCase(kw) || l.getTenLoai().equalsIgnoreCase(kw)) {
                 System.out.println("=> Thong tin loai san pham:");
-                System.out.printf("%s | %s%n", l.getMaLoai(), l.getTenLoai());
+                mang[i].xuat();
                 found = true;
             }
         }

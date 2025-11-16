@@ -32,21 +32,14 @@ public class DanhSachHangSanPham {
         }
         System.out.println("\t====== Danh sach hang san pham ======");
         for (int i = 0; i < n; i++) {
-            HangSanPham h = mang[i];
-            System.out.printf("%s | %s | %s%n", h.getMaHang(), h.getTenHang(), h.getQuocGia());
+            mang[i].xuat();
         }
     }
 
     // ===== Them hang san pham =====
     public void them() {
-        Scanner sc = new Scanner(System.in);
         HangSanPham h = new HangSanPham();
-        System.out.print("Nhap ma hang: ");
-        h.setMaHang(sc.nextLine());
-        System.out.print("Nhap ten hang: ");
-        h.setTenHang(sc.nextLine());
-        System.out.print("Nhap quoc gia: ");
-        h.setQuocGia(sc.nextLine());
+        h.nhap();
         damBaoSucChua();
         mang[n++] = h;
         System.out.println("\tDanh sach hang san pham sau khi them:");
@@ -109,7 +102,7 @@ public class DanhSachHangSanPham {
                     || h.getTenHang().equalsIgnoreCase(kw)
                     || h.getQuocGia().equalsIgnoreCase(kw)) {
                 System.out.println("=> Thong tin hang san pham:");
-                System.out.printf("%s | %s | %s%n", h.getMaHang(), h.getTenHang(), h.getQuocGia());
+                mang[i].xuat();
                 found = true;
             }
         }

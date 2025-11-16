@@ -32,30 +32,14 @@ public class DanhSachNhanVien {
         }
         System.out.println("\t====== Danh sach nhan vien ======");
         for (int i = 0; i < n; i++) {
-            NhanVien nv = mang[i];
-            System.out.printf("%s | %s | %s | %.2f | %s%n",
-                    nv.getMaNhanVien(), nv.getHoTen(), nv.getNgaySinh(), nv.getLuongThang(), nv.getSoDienThoai());
+            mang[i].xuat();
         }
     }
 
     // ===== Them nhan vien =====
     public void them() {
-        Scanner sc = new Scanner(System.in);
         NhanVien nv = new NhanVien();
-        System.out.print("Nhap ma nhan vien: ");
-        nv.setMaNhanVien(sc.nextLine());
-        System.out.print("Nhap ho ten: ");
-        nv.setHoTen(sc.nextLine());
-        System.out.print("Nhap ngay sinh: ");
-        nv.setNgaySinh(sc.nextLine());
-        System.out.print("Nhap luong thang: ");
-        double luong = 0;
-        try {
-            luong = Double.parseDouble(sc.nextLine());
-        } catch (Exception ignored) {}
-        nv.setLuongThang(luong);
-        System.out.print("Nhap so dien thoai: ");
-        nv.setSoDienThoai(sc.nextLine());
+        nv.nhap();
         damBaoSucChua();
         mang[n++] = nv;
         System.out.println("\tDanh sach nhan vien sau khi them:");
@@ -118,8 +102,7 @@ public class DanhSachNhanVien {
                     || nv.getHoTen().equalsIgnoreCase(kw)
                     || nv.getSoDienThoai().equalsIgnoreCase(kw)) {
                 System.out.println("=> Thong tin nhan vien:");
-                System.out.printf("%s | %s | %s | %.2f | %s%n",
-                        nv.getMaNhanVien(), nv.getHoTen(), nv.getNgaySinh(), nv.getLuongThang(), nv.getSoDienThoai());
+                mang[i].xuat();
                 found = true;
             }
         }

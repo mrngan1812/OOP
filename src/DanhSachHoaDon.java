@@ -32,26 +32,14 @@ public class DanhSachHoaDon {
         }
         System.out.println("\t====== Danh sach hoa don ======");
         for (int i = 0; i < n; i++) {
-            HoaDon hd = mang[i];
-            System.out.printf("%s | KH:%s | Ngay:%s | Tong:%.2f | CT:%d%n",
-                    hd.getMaHoaDon(), hd.getMaKhachHang(), hd.getNgayLap(), hd.getTongTien(), hd.getChiTiet().size());
+            mang[i].xuat();
         }
     }
 
     // ===== Them hoa don =====
     public void them() {
-        Scanner sc = new Scanner(System.in);
         HoaDon hd = new HoaDon();
-        System.out.print("Nhap ma hoa don: ");
-        hd.setMaHoaDon(sc.nextLine());
-        System.out.print("Nhap ma khach hang: ");
-        hd.setMaKhachHang(sc.nextLine());
-        System.out.print("Nhap ngay lap: ");
-        hd.setNgayLap(sc.nextLine());
-        System.out.print("Nhap tong tien: ");
-        try {
-            hd.setTongTien(Double.parseDouble(sc.nextLine()));
-        } catch (Exception ignored) {}
+        hd.nhap();
         damBaoSucChua();
         mang[n++] = hd;
         System.out.println("\tDanh sach hoa don sau khi them:");
@@ -114,8 +102,7 @@ public class DanhSachHoaDon {
                     || hd.getMaKhachHang().equalsIgnoreCase(kw)
                     || hd.getNgayLap().equalsIgnoreCase(kw)) {
                 System.out.println("=> Thong tin hoa don:");
-                System.out.printf("%s | KH:%s | Ngay:%s | Tong:%.2f | CT:%d%n",
-                        hd.getMaHoaDon(), hd.getMaKhachHang(), hd.getNgayLap(), hd.getTongTien(), hd.getChiTiet().size());
+                mang[i].xuat();
                 found = true;
             }
         }

@@ -32,29 +32,14 @@ public class DanhSachChiTietNhapHang {
         }
         System.out.println("\t====== Danh sach chi tiet nhap hang ======");
         for (int i = 0; i < n; i++) {
-            ChiTietNhapHang ct = mang[i];
-            System.out.printf("CT:%s | SP:%s | SL:%d | Don gia:%.2f | Tien:%.2f%n",
-                    ct.getMaChiTietNhapHang(), ct.getMaSanPham(), ct.getSoLuong(), ct.getDonGia(), ct.getThanhTien());
+            mang[i].xuat();
         }
     }
 
     // ===== Them chi tiet nhap hang =====
     public void them() {
-        Scanner sc = new Scanner(System.in);
         ChiTietNhapHang ct = new ChiTietNhapHang();
-        System.out.print("Nhap ma chi tiet nhap hang: ");
-        ct.setMaChiTietNhapHang(sc.nextLine());
-        System.out.print("Nhap ma san pham: ");
-        ct.setMaSanPham(sc.nextLine());
-        System.out.print("Nhap so luong: ");
-        try {
-            ct.setSoLuong(Integer.parseInt(sc.nextLine()));
-        } catch (Exception ignored) {}
-        System.out.print("Nhap don gia: ");
-        try {
-            ct.setDonGia(Double.parseDouble(sc.nextLine()));
-        } catch (Exception ignored) {}
-        ct.setThanhTien(ct.getSoLuong() * ct.getDonGia());
+        ct.nhap();
         damBaoSucChua();
         mang[n++] = ct;
         System.out.println("\tDanh sach chi tiet nhap hang sau khi them:");
@@ -116,8 +101,7 @@ public class DanhSachChiTietNhapHang {
             if ((ct.getMaChiTietNhapHang() != null && ct.getMaChiTietNhapHang().equalsIgnoreCase(kw))
                     || ct.getMaSanPham().equalsIgnoreCase(kw)) {
                 System.out.println("=> Thong tin chi tiet nhap hang:");
-                System.out.printf("CT:%s | SP:%s | SL:%d | Don gia:%.2f | Tien:%.2f%n",
-                        ct.getMaChiTietNhapHang(), ct.getMaSanPham(), ct.getSoLuong(), ct.getDonGia(), ct.getThanhTien());
+                mang[i].xuat();
                 found = true;
             }
         }

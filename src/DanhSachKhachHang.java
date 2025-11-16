@@ -39,24 +39,14 @@ public class DanhSachKhachHang implements IDanhSach {
         }
         System.out.println("\t====== Danh sach khach hang ======");
         for (int i = 0; i < n; i++) {
-            KhachHang kh = mang[i];
-            System.out.printf("%s | %s | %s | %s%n",
-                    kh.getMaKhachHang(), kh.getHoTen(), kh.getSoDienThoai(), kh.getDiaChi());
+            mang[i].xuat();
         }
     }
 
     // ===== Them khach hang =====
     public void them() {
-        Scanner sc = new Scanner(System.in);
         KhachHang kh = new KhachHang();
-        System.out.print("Nhap ma khach hang: ");
-        kh.setMaKhachHang(sc.nextLine());
-        System.out.print("Nhap ho ten: ");
-        kh.setHoTen(sc.nextLine());
-        System.out.print("Nhap so dien thoai: ");
-        kh.setSoDienThoai(sc.nextLine());
-        System.out.print("Nhap dia chi: ");
-        kh.setDiaChi(sc.nextLine());
+        kh.nhap();
         add(kh);
         System.out.println("\tDanh sach khach hang sau khi them:");
         xemDanhSach();
@@ -118,8 +108,7 @@ public class DanhSachKhachHang implements IDanhSach {
                     || kh.getHoTen().equalsIgnoreCase(kw)
                     || kh.getSoDienThoai().equalsIgnoreCase(kw)) {
                 System.out.println("=> Thong tin khach hang:");
-                System.out.printf("%s | %s | %s | %s%n",
-                        kh.getMaKhachHang(), kh.getHoTen(), kh.getSoDienThoai(), kh.getDiaChi());
+                mang[i].xuat();
                 found = true;
             }
         }

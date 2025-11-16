@@ -32,28 +32,14 @@ public class DanhSachPhieuNhapHang {
         }
         System.out.println("\t====== Danh sach phieu nhap hang ======");
         for (int i = 0; i < n; i++) {
-            PhieuNhapHang pn = mang[i];
-            System.out.printf("%s | NV:%s | Ngay:%s | NCC:%s | Tong:%.2f | CT:%d%n",
-                    pn.getMaPhieuNhap(), pn.getMaNhanVien(), pn.getNgayNhap(), pn.getMaNCC(), pn.getTongTien(), pn.getChiTiet().size());
+            mang[i].xuat();
         }
     }
 
     // ===== Them phieu nhap hang =====
     public void them() {
-        Scanner sc = new Scanner(System.in);
         PhieuNhapHang pn = new PhieuNhapHang();
-        System.out.print("Nhap ma phieu nhap: ");
-        pn.setMaPhieuNhap(sc.nextLine());
-        System.out.print("Nhap ma nhan vien: ");
-        pn.setMaNhanVien(sc.nextLine());
-        System.out.print("Nhap ngay nhap: ");
-        pn.setNgayNhap(sc.nextLine());
-        System.out.print("Nhap ma nha cung cap: ");
-        pn.setMaNCC(sc.nextLine());
-        System.out.print("Nhap tong tien: ");
-        try {
-            pn.setTongTien(Double.parseDouble(sc.nextLine()));
-        } catch (Exception ignored) {}
+        pn.nhap();
         damBaoSucChua();
         mang[n++] = pn;
         System.out.println("\tDanh sach phieu nhap hang sau khi them:");
@@ -117,8 +103,7 @@ public class DanhSachPhieuNhapHang {
                     || pn.getMaNCC().equalsIgnoreCase(kw)
                     || pn.getNgayNhap().equalsIgnoreCase(kw)) {
                 System.out.println("=> Thong tin phieu nhap hang:");
-                System.out.printf("%s | NV:%s | Ngay:%s | NCC:%s | Tong:%.2f | CT:%d%n",
-                        pn.getMaPhieuNhap(), pn.getMaNhanVien(), pn.getNgayNhap(), pn.getMaNCC(), pn.getTongTien(), pn.getChiTiet().size());
+                mang[i].xuat();
                 found = true;
             }
         }

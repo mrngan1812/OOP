@@ -32,24 +32,14 @@ public class DanhSachNhaCungCap {
         }
         System.out.println("\t====== Danh sach nha cung cap ======");
         for (int i = 0; i < n; i++) {
-            NhaCungCap ncc = mang[i];
-            System.out.printf("%s | %s | %s | %s%n",
-                    ncc.getMaNCC(), ncc.getTenNCC(), ncc.getSoDienThoai(), ncc.getDiaChi());
+            mang[i].xuat();
         }
     }
 
     // ===== Them nha cung cap =====
     public void them() {
-        Scanner sc = new Scanner(System.in);
         NhaCungCap ncc = new NhaCungCap();
-        System.out.print("Nhap ma nha cung cap: ");
-        ncc.setMaNCC(sc.nextLine());
-        System.out.print("Nhap ten nha cung cap: ");
-        ncc.setTenNCC(sc.nextLine());
-        System.out.print("Nhap so dien thoai: ");
-        ncc.setSoDienThoai(sc.nextLine());
-        System.out.print("Nhap dia chi: ");
-        ncc.setDiaChi(sc.nextLine());
+        ncc.nhap();
         damBaoSucChua();
         mang[n++] = ncc;
         System.out.println("\tDanh sach nha cung cap sau khi them:");
@@ -112,8 +102,7 @@ public class DanhSachNhaCungCap {
                     || ncc.getTenNCC().equalsIgnoreCase(kw)
                     || ncc.getSoDienThoai().equalsIgnoreCase(kw)) {
                 System.out.println("=> Thong tin nha cung cap:");
-                System.out.printf("%s | %s | %s | %s%n",
-                        ncc.getMaNCC(), ncc.getTenNCC(), ncc.getSoDienThoai(), ncc.getDiaChi());
+                mang[i].xuat();
                 found = true;
             }
         }

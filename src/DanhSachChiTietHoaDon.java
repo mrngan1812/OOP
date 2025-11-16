@@ -32,29 +32,14 @@ public class DanhSachChiTietHoaDon {
         }
         System.out.println("\t====== Danh sach chi tiet hoa don ======");
         for (int i = 0; i < n; i++) {
-            ChiTietHoaDon ct = mang[i];
-            System.out.printf("HD:%s | SP:%s | SL:%d | Don gia:%.2f | Tien:%.2f%n",
-                    ct.getMaHoaDon(), ct.getMaSanPham(), ct.getSoLuong(), ct.getDonGia(), ct.getThanhTien());
+            mang[i].xuat();
         }
     }
 
     // ===== Them chi tiet hoa don =====
     public void them() {
-        Scanner sc = new Scanner(System.in);
         ChiTietHoaDon ct = new ChiTietHoaDon();
-        System.out.print("Nhap ma hoa don: ");
-        ct.setMaHoaDon(sc.nextLine());
-        System.out.print("Nhap ma san pham: ");
-        ct.setMaSanPham(sc.nextLine());
-        System.out.print("Nhap so luong: ");
-        try {
-            ct.setSoLuong(Integer.parseInt(sc.nextLine()));
-        } catch (Exception ignored) {}
-        System.out.print("Nhap don gia: ");
-        try {
-            ct.setDonGia(Double.parseDouble(sc.nextLine()));
-        } catch (Exception ignored) {}
-        ct.setThanhTien(ct.getSoLuong() * ct.getDonGia());
+        ct.nhap();
         damBaoSucChua();
         mang[n++] = ct;
         System.out.println("\tDanh sach chi tiet hoa don sau khi them:");
@@ -119,8 +104,7 @@ public class DanhSachChiTietHoaDon {
             ChiTietHoaDon ct = mang[i];
             if (ct.getMaHoaDon().equalsIgnoreCase(kw) || ct.getMaSanPham().equalsIgnoreCase(kw)) {
                 System.out.println("=> Thong tin chi tiet hoa don:");
-                System.out.printf("HD:%s | SP:%s | SL:%d | Don gia:%.2f | Tien:%.2f%n",
-                        ct.getMaHoaDon(), ct.getMaSanPham(), ct.getSoLuong(), ct.getDonGia(), ct.getThanhTien());
+                mang[i].xuat();
                 found = true;
             }
         }
