@@ -4,7 +4,7 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.Scanner;
 
-public class DanhSachKhachHang {
+public class DanhSachKhachHang implements IDanhSach {
     private KhachHang[] mang;
     private int n;
 
@@ -20,7 +20,7 @@ public class DanhSachKhachHang {
 
     private void damBaoSucChua() {
         if (n >= mang.length) {
-            KhachHang[] moi = new KhachHang[mang.length * 2];
+            KhachHang[] moi = new KhachHang[mang.length + 1];
             System.arraycopy(mang, 0, moi, 0, n);
             mang = moi;
         }
@@ -31,11 +31,13 @@ public class DanhSachKhachHang {
         mang[n++] = kh;
     }
 
+    // ===== Xem danh sach =====
     public void xemDanhSach() {
         if (n == 0) {
-            System.out.println("Danh sach khach hang rong");
+            System.out.println("=> Danh sach khach hang rong");
             return;
         }
+        System.out.println("\t====== Danh sach khach hang ======");
         for (int i = 0; i < n; i++) {
             KhachHang kh = mang[i];
             System.out.printf("%s | %s | %s | %s%n",
@@ -43,76 +45,93 @@ public class DanhSachKhachHang {
         }
     }
 
+    // ===== Them khach hang =====
     public void them() {
-        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
         KhachHang kh = new KhachHang();
-        System.out.print("Ma KH: ");
-        kh.setMaKhachHang(sc.nextLine().trim());
-        System.out.print("Ho ten: ");
-        kh.setHoTen(sc.nextLine().trim());
-        System.out.print("So dien thoai: ");
-        kh.setSoDienThoai(sc.nextLine().trim());
-        System.out.print("Dia chi: ");
-        kh.setDiaChi(sc.nextLine().trim());
+        System.out.print("Nhap ma khach hang: ");
+        kh.setMaKhachHang(sc.nextLine());
+        System.out.print("Nhap ho ten: ");
+        kh.setHoTen(sc.nextLine());
+        System.out.print("Nhap so dien thoai: ");
+        kh.setSoDienThoai(sc.nextLine());
+        System.out.print("Nhap dia chi: ");
+        kh.setDiaChi(sc.nextLine());
         add(kh);
-        System.out.println("Da them KH.");
+        System.out.println("\tDanh sach khach hang sau khi them:");
+        xemDanhSach();
     }
 
+    // ===== Xoa theo ma =====
     public void xoa() {
-        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap ma KH can xoa: ");
-        String ma = sc.nextLine().trim();
+        System.out.print("Nhap ma khach hang can xoa: ");
+        String ma = sc.nextLine();
+        boolean found = false;
         for (int i = 0; i < n; i++) {
-            if (mang[i].getMaKhachHang().equals(ma)) {
-                for (int j = i; j < n - 1; j++) mang[j] = mang[j + 1];
+            if (mang[i].getMaKhachHang().equalsIgnoreCase(ma)) {
+                for (int j = i; j < n - 1; j++) {
+                    mang[j] = mang[j + 1];
+                }
                 n--;
-                System.out.println("Da xoa.");
-                return;
+                System.out.println("\tDanh sach khach hang sau khi xoa:");
+                xemDanhSach();
+                found = true;
+                break;
             }
         }
-        System.out.println("Khong tim thay.");
+        if (!found) {
+            System.out.println("=> Khong tim thay khach hang can xoa!");
+        }
     }
 
+    // ===== Sua thong tin =====
     public void sua() {
-        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap ma KH can sua: ");
-        String ma = sc.nextLine().trim();
+        System.out.print("Nhap ma khach hang can sua: ");
+        String ma = sc.nextLine();
+        boolean found = false;
         for (int i = 0; i < n; i++) {
-            if (mang[i].getMaKhachHang().equals(ma)) {
-                System.out.print("Ho ten moi (bo trong de giu nguyen): ");
-                String s = sc.nextLine(); if (!s.isBlank()) mang[i].setHoTen(s.trim());
-                System.out.print("SDT moi (bo trong de giu nguyen): ");
-                s = sc.nextLine(); if (!s.isBlank()) mang[i].setSoDienThoai(s.trim());
-                System.out.print("Dia chi moi (bo trong de giu nguyen): ");
-                s = sc.nextLine(); if (!s.isBlank()) mang[i].setDiaChi(s.trim());
-                System.out.println("Da cap nhat.");
-                return;
+            if (mang[i].getMaKhachHang().equalsIgnoreCase(ma)) {
+                System.out.println("Nhap thong tin moi:");
+                mang[i].nhap();
+                found = true;
+                System.out.println("\tThong tin sau khi sua:");
+                mang[i].xuat();
+                break;
             }
         }
-        System.out.println("Khong tim thay.");
+        if (!found) {
+            System.out.println("=> Khong tim thay khach hang can sua!");
+        }
     }
 
+    // ===== Tim kiem =====
     public void timKiem() {
-        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap tu khoa (ma/ten/sdt): ");
-        String kw = sc.nextLine().trim().toLowerCase();
+        String kw = sc.nextLine();
+        boolean found = false;
         for (int i = 0; i < n; i++) {
             KhachHang kh = mang[i];
-            if (kh.getMaKhachHang().toLowerCase().contains(kw)
-                    || kh.getHoTen().toLowerCase().contains(kw)
-                    || kh.getSoDienThoai().toLowerCase().contains(kw)) {
+            if (kh.getMaKhachHang().equalsIgnoreCase(kw)
+                    || kh.getHoTen().equalsIgnoreCase(kw)
+                    || kh.getSoDienThoai().equalsIgnoreCase(kw)) {
+                System.out.println("=> Thong tin khach hang:");
                 System.out.printf("%s | %s | %s | %s%n",
                         kh.getMaKhachHang(), kh.getHoTen(), kh.getSoDienThoai(), kh.getDiaChi());
+                found = true;
             }
+        }
+        if (!found) {
+            System.out.println("=> Khong tim thay khach hang!");
         }
     }
 
+    // ===== Thong ke =====
     public void thongKe() {
-        System.out.printf("Tong so khach hang: %d%n", n);
+        System.out.println("\t====== Thong ke ======");
+        System.out.println("Tong so khach hang: " + n);
     }
 
     public void ghiFile() {

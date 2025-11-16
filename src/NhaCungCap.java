@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class NhaCungCap {
     private String mancc;
     private String tenncc;
@@ -18,6 +20,23 @@ public class NhaCungCap {
     public void setSoDienThoai(String soDienThoai) { this.sodienthoai = soDienThoai; }
     public String getDiaChi() { return diachi; }
     public void setDiaChi(String diaChi) { this.diachi = diaChi; }
+
+    public void nhap() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Ma nha cung cap: ");
+        this.mancc = sc.nextLine();
+        System.out.print("Ten nha cung cap: ");
+        this.tenncc = sc.nextLine();
+        System.out.print("So dien thoai: ");
+        this.sodienthoai = sc.nextLine();
+        System.out.print("Dia chi: ");
+        this.diachi = sc.nextLine();
+    }
+
+    public void xuat() {
+        System.out.printf("%s | %s | %s | %s%n",
+                mancc, tenncc, sodienthoai, diachi);
+    }
 }
 
 

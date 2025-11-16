@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class HoaDon {
     private String mahoadon;
@@ -17,6 +18,25 @@ public class HoaDon {
     public double getTongTien() { return tongtien; }
     public void setTongTien(double tongTien) { this.tongtien = tongTien; }
     public List<ChiTietHoaDon> getChiTiet() { return chitiet; }
+
+    public void nhap() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Ma hoa don: ");
+        this.mahoadon = sc.nextLine();
+        System.out.print("Ma khach hang: ");
+        this.makhachhang = sc.nextLine();
+        System.out.print("Ngay lap: ");
+        this.ngaylap = sc.nextLine();
+        System.out.print("Tong tien: ");
+        try {
+            this.tongtien = Double.parseDouble(sc.nextLine());
+        } catch (Exception ignored) {}
+    }
+
+    public void xuat() {
+        System.out.printf("%s | KH:%s | Ngay:%s | Tong:%.2f | CT:%d%n",
+                mahoadon, makhachhang, ngaylap, tongtien, chitiet.size());
+    }
 }
 
 

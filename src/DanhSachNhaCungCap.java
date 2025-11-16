@@ -18,14 +18,19 @@ public class DanhSachNhaCungCap {
 
     private void damBaoSucChua() {
         if (n >= mang.length) {
-            NhaCungCap[] moi = new NhaCungCap[mang.length * 2];
+            NhaCungCap[] moi = new NhaCungCap[mang.length + 1];
             System.arraycopy(mang, 0, moi, 0, n);
             mang = moi;
         }
     }
 
+    // ===== Xem danh sach =====
     public void xemDanhSach() {
-        if (n == 0) { System.out.println("Danh sach NCC rong"); return; }
+        if (n == 0) {
+            System.out.println("=> Danh sach nha cung cap rong");
+            return;
+        }
+        System.out.println("\t====== Danh sach nha cung cap ======");
         for (int i = 0; i < n; i++) {
             NhaCungCap ncc = mang[i];
             System.out.printf("%s | %s | %s | %s%n",
@@ -33,71 +38,94 @@ public class DanhSachNhaCungCap {
         }
     }
 
+    // ===== Them nha cung cap =====
     public void them() {
-        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
         NhaCungCap ncc = new NhaCungCap();
-        System.out.print("Ma NCC: "); ncc.setMaNCC(sc.nextLine().trim());
-        System.out.print("Ten NCC: "); ncc.setTenNCC(sc.nextLine().trim());
-        System.out.print("SDT: "); ncc.setSoDienThoai(sc.nextLine().trim());
-        System.out.print("Dia chi: "); ncc.setDiaChi(sc.nextLine().trim());
+        System.out.print("Nhap ma nha cung cap: ");
+        ncc.setMaNCC(sc.nextLine());
+        System.out.print("Nhap ten nha cung cap: ");
+        ncc.setTenNCC(sc.nextLine());
+        System.out.print("Nhap so dien thoai: ");
+        ncc.setSoDienThoai(sc.nextLine());
+        System.out.print("Nhap dia chi: ");
+        ncc.setDiaChi(sc.nextLine());
         damBaoSucChua();
         mang[n++] = ncc;
-        System.out.println("Da them NCC.");
+        System.out.println("\tDanh sach nha cung cap sau khi them:");
+        xemDanhSach();
     }
 
+    // ===== Xoa theo ma =====
     public void xoa() {
-        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap ma NCC can xoa: ");
-        String ma = sc.nextLine().trim();
+        System.out.print("Nhap ma nha cung cap can xoa: ");
+        String ma = sc.nextLine();
+        boolean found = false;
         for (int i = 0; i < n; i++) {
-            if (mang[i].getMaNCC().equals(ma)) {
-                for (int j = i; j < n - 1; j++) mang[j] = mang[j + 1];
+            if (mang[i].getMaNCC().equalsIgnoreCase(ma)) {
+                for (int j = i; j < n - 1; j++) {
+                    mang[j] = mang[j + 1];
+                }
                 n--;
-                System.out.println("Da xoa.");
-                return;
+                System.out.println("\tDanh sach nha cung cap sau khi xoa:");
+                xemDanhSach();
+                found = true;
+                break;
             }
         }
-        System.out.println("Khong tim thay.");
+        if (!found) {
+            System.out.println("=> Khong tim thay nha cung cap can xoa!");
+        }
     }
 
+    // ===== Sua thong tin =====
     public void sua() {
-        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap ma NCC can sua: ");
-        String ma = sc.nextLine().trim();
+        System.out.print("Nhap ma nha cung cap can sua: ");
+        String ma = sc.nextLine();
+        boolean found = false;
         for (int i = 0; i < n; i++) {
-            NhaCungCap nc = mang[i];
-            if (nc.getMaNCC().equals(ma)) {
-                System.out.print("Ten moi: "); String s = sc.nextLine(); if (!s.isBlank()) nc.setTenNCC(s.trim());
-                System.out.print("SDT moi: "); s = sc.nextLine(); if (!s.isBlank()) nc.setSoDienThoai(s.trim());
-                System.out.print("Dia chi moi: "); s = sc.nextLine(); if (!s.isBlank()) nc.setDiaChi(s.trim());
-                System.out.println("Da cap nhat.");
-                return;
+            if (mang[i].getMaNCC().equalsIgnoreCase(ma)) {
+                System.out.println("Nhap thong tin moi:");
+                mang[i].nhap();
+                found = true;
+                System.out.println("\tThong tin sau khi sua:");
+                mang[i].xuat();
+                break;
             }
         }
-        System.out.println("Khong tim thay.");
+        if (!found) {
+            System.out.println("=> Khong tim thay nha cung cap can sua!");
+        }
     }
 
+    // ===== Tim kiem =====
     public void timKiem() {
-        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap tu khoa (ma/ten/sdt): ");
-        String kw = sc.nextLine().trim().toLowerCase();
+        String kw = sc.nextLine();
+        boolean found = false;
         for (int i = 0; i < n; i++) {
             NhaCungCap ncc = mang[i];
-            if (ncc.getMaNCC().toLowerCase().contains(kw)
-                    || ncc.getTenNCC().toLowerCase().contains(kw)
-                    || ncc.getSoDienThoai().toLowerCase().contains(kw)) {
+            if (ncc.getMaNCC().equalsIgnoreCase(kw)
+                    || ncc.getTenNCC().equalsIgnoreCase(kw)
+                    || ncc.getSoDienThoai().equalsIgnoreCase(kw)) {
+                System.out.println("=> Thong tin nha cung cap:");
                 System.out.printf("%s | %s | %s | %s%n",
                         ncc.getMaNCC(), ncc.getTenNCC(), ncc.getSoDienThoai(), ncc.getDiaChi());
+                found = true;
             }
+        }
+        if (!found) {
+            System.out.println("=> Khong tim thay nha cung cap!");
         }
     }
 
+    // ===== Thong ke =====
     public void thongKe() {
-        System.out.printf("Tong so NCC: %d%n", n);
+        System.out.println("\t====== Thong ke ======");
+        System.out.println("Tong so nha cung cap: " + n);
     }
 
     public void ghiFile() {

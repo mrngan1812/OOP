@@ -18,14 +18,19 @@ public class DanhSachChiTietNhapHang {
 
     private void damBaoSucChua() {
         if (n >= mang.length) {
-            ChiTietNhapHang[] moi = new ChiTietNhapHang[mang.length * 2];
+            ChiTietNhapHang[] moi = new ChiTietNhapHang[mang.length + 1];
             System.arraycopy(mang, 0, moi, 0, n);
             mang = moi;
         }
     }
 
+    // ===== Xem danh sach =====
     public void xemDanhSach() {
-        if (n == 0) { System.out.println("Danh sach CTNH rong"); return; }
+        if (n == 0) {
+            System.out.println("=> Danh sach chi tiet nhap hang rong");
+            return;
+        }
+        System.out.println("\t====== Danh sach chi tiet nhap hang ======");
         for (int i = 0; i < n; i++) {
             ChiTietNhapHang ct = mang[i];
             System.out.printf("CT:%s | SP:%s | SL:%d | Don gia:%.2f | Tien:%.2f%n",
@@ -33,74 +38,103 @@ public class DanhSachChiTietNhapHang {
         }
     }
 
+    // ===== Them chi tiet nhap hang =====
     public void them() {
-        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
         ChiTietNhapHang ct = new ChiTietNhapHang();
-        System.out.print("Ma CTNH: "); ct.setMaChiTietNhapHang(sc.nextLine().trim());
-        System.out.print("Ma SP: "); ct.setMaSanPham(sc.nextLine().trim());
-        System.out.print("So luong: "); try { ct.setSoLuong(Integer.parseInt(sc.nextLine().trim())); } catch (Exception ignored) {}
-        System.out.print("Don gia: "); try { ct.setDonGia(Double.parseDouble(sc.nextLine().trim())); } catch (Exception ignored) {}
+        System.out.print("Nhap ma chi tiet nhap hang: ");
+        ct.setMaChiTietNhapHang(sc.nextLine());
+        System.out.print("Nhap ma san pham: ");
+        ct.setMaSanPham(sc.nextLine());
+        System.out.print("Nhap so luong: ");
+        try {
+            ct.setSoLuong(Integer.parseInt(sc.nextLine()));
+        } catch (Exception ignored) {}
+        System.out.print("Nhap don gia: ");
+        try {
+            ct.setDonGia(Double.parseDouble(sc.nextLine()));
+        } catch (Exception ignored) {}
         ct.setThanhTien(ct.getSoLuong() * ct.getDonGia());
         damBaoSucChua();
         mang[n++] = ct;
-        System.out.println("Da them CTNH.");
+        System.out.println("\tDanh sach chi tiet nhap hang sau khi them:");
+        xemDanhSach();
     }
 
+    // ===== Xoa theo ma =====
     public void xoa() {
-        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap ma CTNH can xoa: ");
-        String ma = sc.nextLine().trim();
+        System.out.print("Nhap ma chi tiet nhap hang can xoa: ");
+        String ma = sc.nextLine();
+        boolean found = false;
         for (int i = 0; i < n; i++) {
-            if (ma.equals(mang[i].getMaChiTietNhapHang())) {
-                for (int j = i; j < n - 1; j++) mang[j] = mang[j + 1];
+            if (mang[i].getMaChiTietNhapHang() != null && mang[i].getMaChiTietNhapHang().equalsIgnoreCase(ma)) {
+                for (int j = i; j < n - 1; j++) {
+                    mang[j] = mang[j + 1];
+                }
                 n--;
-                System.out.println("Da xoa.");
-                return;
+                System.out.println("\tDanh sach chi tiet nhap hang sau khi xoa:");
+                xemDanhSach();
+                found = true;
+                break;
             }
         }
-        System.out.println("Khong tim thay.");
+        if (!found) {
+            System.out.println("=> Khong tim thay chi tiet nhap hang can xoa!");
+        }
     }
 
+    // ===== Sua thong tin =====
     public void sua() {
-        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap ma CTNH can sua: ");
-        String ma = sc.nextLine().trim();
+        System.out.print("Nhap ma chi tiet nhap hang can sua: ");
+        String ma = sc.nextLine();
+        boolean found = false;
         for (int i = 0; i < n; i++) {
-            ChiTietNhapHang ct = mang[i];
-            if (ma.equals(ct.getMaChiTietNhapHang())) {
-                System.out.print("So luong moi: "); String s = sc.nextLine(); if (!s.isBlank()) try { ct.setSoLuong(Integer.parseInt(s.trim())); } catch (Exception ignored) {}
-                System.out.print("Don gia moi: "); s = sc.nextLine(); if (!s.isBlank()) try { ct.setDonGia(Double.parseDouble(s.trim())); } catch (Exception ignored) {}
-                ct.setThanhTien(ct.getSoLuong() * ct.getDonGia());
-                System.out.println("Da cap nhat.");
-                return;
+            if (mang[i].getMaChiTietNhapHang() != null && mang[i].getMaChiTietNhapHang().equalsIgnoreCase(ma)) {
+                System.out.println("Nhap thong tin moi:");
+                mang[i].nhap();
+                found = true;
+                System.out.println("\tThong tin sau khi sua:");
+                mang[i].xuat();
+                break;
             }
         }
-        System.out.println("Khong tim thay.");
+        if (!found) {
+            System.out.println("=> Khong tim thay chi tiet nhap hang can sua!");
+        }
     }
 
+    // ===== Tim kiem =====
     public void timKiem() {
-        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap tu khoa (maCTNH/maSP): ");
-        String kw = sc.nextLine().trim().toLowerCase();
+        String kw = sc.nextLine();
+        boolean found = false;
         for (int i = 0; i < n; i++) {
             ChiTietNhapHang ct = mang[i];
-            if ((ct.getMaChiTietNhapHang() != null && ct.getMaChiTietNhapHang().toLowerCase().contains(kw))
-                    || ct.getMaSanPham().toLowerCase().contains(kw)) {
+            if ((ct.getMaChiTietNhapHang() != null && ct.getMaChiTietNhapHang().equalsIgnoreCase(kw))
+                    || ct.getMaSanPham().equalsIgnoreCase(kw)) {
+                System.out.println("=> Thong tin chi tiet nhap hang:");
                 System.out.printf("CT:%s | SP:%s | SL:%d | Don gia:%.2f | Tien:%.2f%n",
                         ct.getMaChiTietNhapHang(), ct.getMaSanPham(), ct.getSoLuong(), ct.getDonGia(), ct.getThanhTien());
+                found = true;
             }
+        }
+        if (!found) {
+            System.out.println("=> Khong tim thay chi tiet nhap hang!");
         }
     }
 
+    // ===== Thong ke =====
     public void thongKe() {
-        int soDong = n;
         double tongTien = 0;
-        for (int i = 0; i < n; i++) tongTien += mang[i].getThanhTien();
-        System.out.printf("So dong CTNH: %d | Tong tien: %.2f%n", soDong, tongTien);
+        for (int i = 0; i < n; i++) {
+            tongTien += mang[i].getThanhTien();
+        }
+        System.out.println("\t====== Thong ke ======");
+        System.out.println("So dong chi tiet nhap hang: " + n);
+        System.out.printf("Tong tien: %.2f%n", tongTien);
     }
 
     public void ghiFile() {
@@ -150,5 +184,6 @@ public class DanhSachChiTietNhapHang {
         }
     }
 }
+
 
 

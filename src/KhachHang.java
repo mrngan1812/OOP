@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class KhachHang {
     private String makhachhang;
     private String hoten;
@@ -27,5 +29,22 @@ public class KhachHang {
     public void setSoDienThoai(String soDienThoai) { this.sodienthoai = soDienThoai; }
     public String getDiaChi() { return diachi; }
     public void setDiaChi(String diaChi) { this.diachi = diaChi; }
+
+    public void nhap() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Ma khach hang: ");
+        this.makhachhang = sc.nextLine();
+        System.out.print("Ho ten: ");
+        this.hoten = sc.nextLine();
+        System.out.print("So dien thoai: ");
+        this.sodienthoai = sc.nextLine();
+        System.out.print("Dia chi: ");
+        this.diachi = sc.nextLine();
+    }
+
+    public void xuat() {
+        System.out.printf("%s | %s | %s | %s%n",
+                makhachhang, hoten, sodienthoai, diachi);
+    }
 }
 

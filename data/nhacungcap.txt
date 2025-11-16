@@ -10,4 +10,3 @@ NCC009|Cong ty Giay VWX|0909999999|369 Duong VWX, Quan 9
 NCC010|Cong ty Dep YZ|0900000000|741 Duong YZ, Quan 10
 NCC011|Cong ty Giay Dep AA|0901010101|852 Duong AA, Quan 11
 NCC012|Cong ty San pham BB|0902020202|963 Duong BB, Quan 12
-

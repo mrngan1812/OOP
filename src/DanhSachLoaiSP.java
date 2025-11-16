@@ -18,78 +18,106 @@ public class DanhSachLoaiSP {
 
     private void damBaoSucChua() {
         if (n >= mang.length) {
-            LoaiSP[] moi = new LoaiSP[mang.length * 2];
+            LoaiSP[] moi = new LoaiSP[mang.length + 1];
             System.arraycopy(mang, 0, moi, 0, n);
             mang = moi;
         }
     }
 
+    // ===== Xem danh sach =====
     public void xemDanhSach() {
-        if (n == 0) { System.out.println("Danh sach loai SP rong"); return; }
+        if (n == 0) {
+            System.out.println("=> Danh sach loai san pham rong");
+            return;
+        }
+        System.out.println("\t====== Danh sach loai san pham ======");
         for (int i = 0; i < n; i++) {
             LoaiSP l = mang[i];
             System.out.printf("%s | %s%n", l.getMaLoai(), l.getTenLoai());
         }
     }
 
+    // ===== Them loai san pham =====
     public void them() {
-        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
         LoaiSP l = new LoaiSP();
-        System.out.print("Ma loai: "); l.setMaLoai(sc.nextLine().trim());
-        System.out.print("Ten loai: "); l.setTenLoai(sc.nextLine().trim());
+        System.out.print("Nhap ma loai: ");
+        l.setMaLoai(sc.nextLine());
+        System.out.print("Nhap ten loai: ");
+        l.setTenLoai(sc.nextLine());
         damBaoSucChua();
         mang[n++] = l;
-        System.out.println("Da them loai SP.");
+        System.out.println("\tDanh sach loai san pham sau khi them:");
+        xemDanhSach();
     }
 
+    // ===== Xoa theo ma =====
     public void xoa() {
-        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap ma loai can xoa: ");
-        String ma = sc.nextLine().trim();
+        String ma = sc.nextLine();
+        boolean found = false;
         for (int i = 0; i < n; i++) {
-            if (mang[i].getMaLoai().equals(ma)) {
-                for (int j = i; j < n - 1; j++) mang[j] = mang[j + 1];
+            if (mang[i].getMaLoai().equalsIgnoreCase(ma)) {
+                for (int j = i; j < n - 1; j++) {
+                    mang[j] = mang[j + 1];
+                }
                 n--;
-                System.out.println("Da xoa.");
-                return;
+                System.out.println("\tDanh sach loai san pham sau khi xoa:");
+                xemDanhSach();
+                found = true;
+                break;
             }
         }
-        System.out.println("Khong tim thay.");
+        if (!found) {
+            System.out.println("=> Khong tim thay loai san pham can xoa!");
+        }
     }
 
+    // ===== Sua thong tin =====
     public void sua() {
-        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap ma loai can sua: ");
-        String ma = sc.nextLine().trim();
+        String ma = sc.nextLine();
+        boolean found = false;
         for (int i = 0; i < n; i++) {
-            LoaiSP l = mang[i];
-            if (l.getMaLoai().equals(ma)) {
-                System.out.print("Ten moi: "); String s = sc.nextLine(); if (!s.isBlank()) l.setTenLoai(s.trim());
-                System.out.println("Da cap nhat.");
-                return;
+            if (mang[i].getMaLoai().equalsIgnoreCase(ma)) {
+                System.out.println("Nhap thong tin moi:");
+                mang[i].nhap();
+                found = true;
+                System.out.println("\tThong tin sau khi sua:");
+                mang[i].xuat();
+                break;
             }
         }
-        System.out.println("Khong tim thay.");
+        if (!found) {
+            System.out.println("=> Khong tim thay loai san pham can sua!");
+        }
     }
 
+    // ===== Tim kiem =====
     public void timKiem() {
-        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap tu khoa (ma/ten): ");
-        String kw = sc.nextLine().trim().toLowerCase();
+        String kw = sc.nextLine();
+        boolean found = false;
         for (int i = 0; i < n; i++) {
             LoaiSP l = mang[i];
-            if (l.getMaLoai().toLowerCase().contains(kw) || l.getTenLoai().toLowerCase().contains(kw)) {
+            if (l.getMaLoai().equalsIgnoreCase(kw) || l.getTenLoai().equalsIgnoreCase(kw)) {
+                System.out.println("=> Thong tin loai san pham:");
                 System.out.printf("%s | %s%n", l.getMaLoai(), l.getTenLoai());
+                found = true;
             }
+        }
+        if (!found) {
+            System.out.println("=> Khong tim thay loai san pham!");
         }
     }
 
+    // ===== Thong ke =====
     public void thongKe() {
-        System.out.printf("Tong so loai SP: %d%n", n);
+        System.out.println("\t====== Thong ke ======");
+        System.out.println("Tong so loai san pham: " + n);
     }
 
     public void ghiFile() {
@@ -132,5 +160,7 @@ public class DanhSachLoaiSP {
         }
     }
 }
+
+
 
 

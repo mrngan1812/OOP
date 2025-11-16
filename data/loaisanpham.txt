@@ -10,4 +10,3 @@ L009|Dep deo chan
 L010|Giay sandal
 L011|Giay leo nui
 L012|Dep tong
-

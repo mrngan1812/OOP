@@ -26,7 +26,7 @@ public class DanhSachSanPham {
 
     private void damBaoSucChua() {
         if (n >= mangsanpham.length) {
-            mangsanpham = Arrays.copyOf(mangsanpham, mangsanpham.length * 2);
+            mangsanpham = Arrays.copyOf(mangsanpham, mangsanpham.length + 1);
         }
     }
 
@@ -40,6 +40,7 @@ public class DanhSachSanPham {
         }
     }
 
+    // ===== Xem danh sach =====
     public void xuatDanhSach() {
         if (n == 0) {
             System.out.println("Danh sach rong");
@@ -50,6 +51,7 @@ public class DanhSachSanPham {
         }
     }
 
+    // ===== Them san pham =====
     public void themSanPham() {
         System.out.println("Chon loai (1-Giay, 2-Dep): ");
         int chon = readIntSafe();
@@ -82,54 +84,70 @@ public class DanhSachSanPham {
         return false;
     }
 
-    // Xóa sản phẩm theo mã (không tham số - nhập từ bàn phím)
+    // ===== Xoa san pham theo ma =====
     public void xoaSanPhamTheoMa() {
-        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap ma san pham can xoa: ");
-        String masanpham = sc.nextLine().trim();
-        xoaSanPhamTheoMa(masanpham);
-    }
-
-    // Sua thong tin san pham theo ma
-    public void suaSanPhamTheoMa() {
-        @SuppressWarnings("resource")
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap ma san pham can sua: ");
-        String ma = sc.nextLine().trim();
-        for (int i = 0; i < n; i++) {
-            if (mangsanpham[i].getMaSanPham().equals(ma)) {
-                System.out.print("Ten moi (bo trong de giu): ");
-                String s = sc.nextLine(); if (!s.isBlank()) mangsanpham[i].setTenSanPham(s.trim());
-                System.out.print("So luong moi (bo trong de giu): ");
-                s = sc.nextLine(); if (!s.isBlank()) try { mangsanpham[i].setSoLuong(Integer.parseInt(s.trim())); } catch (Exception ignored) {}
-                System.out.print("Don gia moi (bo trong de giu): ");
-                s = sc.nextLine(); if (!s.isBlank()) try { mangsanpham[i].setDonGia(Double.parseDouble(s.trim())); } catch (Exception ignored) {}
-                System.out.println("Da cap nhat.");
-                return;
-            }
-        }
-        System.out.println("Khong tim thay san pham.");
-    }
-
-    // Tim kiem theo ma hoac ten
-    public void timKiem() {
-        @SuppressWarnings("resource")
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap tu khoa (ma/ten): ");
-        String kw = sc.nextLine().trim().toLowerCase();
+        String masanpham = sc.nextLine();
         boolean found = false;
         for (int i = 0; i < n; i++) {
-            if (mangsanpham[i].getMaSanPham().toLowerCase().contains(kw)
-                    || mangsanpham[i].getTenSanPham().toLowerCase().contains(kw)) {
+            if (mangsanpham[i].getMaSanPham().equalsIgnoreCase(masanpham)) {
+                for (int j = i; j < n - 1; j++) {
+                    mangsanpham[j] = mangsanpham[j + 1];
+                }
+                n--;
+                System.out.println("=> Da xoa san pham co ma: " + masanpham);
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            System.out.println("=> Khong tim thay san pham co ma: " + masanpham);
+        }
+    }
+
+    // ===== Sua thong tin san pham =====
+    public void suaSanPhamTheoMa() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap ma san pham can sua: ");
+        String ma = sc.nextLine();
+        boolean found = false;
+        for (int i = 0; i < n; i++) {
+            if (mangsanpham[i].getMaSanPham().equalsIgnoreCase(ma)) {
+                System.out.println("Nhap thong tin moi:");
+                mangsanpham[i].nhap();
+                found = true;
+                System.out.println("\tThong tin sau khi sua:");
+                mangsanpham[i].xuat();
+                break;
+            }
+        }
+        if (!found) {
+            System.out.println("=> Khong tim thay san pham can sua!");
+        }
+    }
+
+    // ===== Tim kiem theo ma hoac ten =====
+    public void timKiem() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap tu khoa (ma/ten): ");
+        String kw = sc.nextLine();
+        boolean found = false;
+        for (int i = 0; i < n; i++) {
+            if (mangsanpham[i].getMaSanPham().equalsIgnoreCase(kw)
+                    || mangsanpham[i].getTenSanPham().equalsIgnoreCase(kw)) {
+                System.out.println("=> Thong tin san pham:");
                 mangsanpham[i].xuat();
                 found = true;
             }
         }
-        if (!found) System.out.println("Khong tim thay.");
+        if (!found) {
+            System.out.println("=> Khong tim thay san pham!");
+        }
     }
 
-    // Thong ke don gian: tong so SP va tong gia tri ton
+
+    // ===== Thong ke =====
     public void thongKe() {
         int tongSL = 0;
         double tongGiaTri = 0;
@@ -137,15 +155,18 @@ public class DanhSachSanPham {
             tongSL += mangsanpham[i].getSoLuong();
             tongGiaTri += mangsanpham[i].getSoLuong() * mangsanpham[i].getDonGia();
         }
-        System.out.printf("So luong mat hang: %d | Tong SL: %d | Tong gia tri: %.2f%n", n, tongSL, tongGiaTri);
+        System.out.println("=> So luong mat hang: " + n);
+        System.out.println("=> Tong so luong: " + tongSL);
+        System.out.printf("=> Tong gia tri: %.2f%n", tongGiaTri);
     }
 
     private int readIntSafe() {
-        @SuppressWarnings("resource")
         Scanner sc = new Scanner(System.in);
         while (true) {
-            String line = sc.nextLine().trim();
-            try { return Integer.parseInt(line); } catch (NumberFormatException e) {
+            String line = sc.nextLine();
+            try {
+                return Integer.parseInt(line);
+            } catch (NumberFormatException e) {
                 System.out.print("Nhap so nguyen hop le: ");
             }
         }
