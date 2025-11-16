@@ -125,7 +125,7 @@ public class QuanLyBanHang {
             int c; try { c = Integer.parseInt(line); } catch (Exception e) { continue; }
             switch (c) {
                 case 1: dsHoaDon.xemDanhSach(); break;
-                case 2: dsHoaDon.them(); break;
+                case 2: themHoaDon(); break;
                 case 3: dsHoaDon.xoa(); break;
                 case 4: dsHoaDon.sua(); break;
                 case 5: dsHoaDon.timKiem(); break;
@@ -183,7 +183,7 @@ public class QuanLyBanHang {
             int c; try { c = Integer.parseInt(line); } catch (Exception e) { continue; }
             switch (c) {
                 case 1: dsPhieuNhap.xemDanhSach(); break;
-                case 2: dsPhieuNhap.them(); break;
+                case 2: themPhieuNhapHang(); break;
                 case 3: dsPhieuNhap.xoa(); break;
                 case 4: dsPhieuNhap.sua(); break;
                 case 5: dsPhieuNhap.timKiem(); break;
@@ -361,6 +361,179 @@ public class QuanLyBanHang {
                 default: System.out.println("Khong hop le!");
             }
         }
+    }
+
+    // ===== Them hoa don =====
+    private void themHoaDon() {
+        Scanner sc = new Scanner(System.in);
+        
+        // Buoc 1: Thong tin hoa don
+        System.out.println("\n=== Buoc 1: Thong tin hoa don ===");
+        HoaDon hd = new HoaDon();
+        hd.nhap();
+        
+        // Buoc 2: Them cac chi tiet hoa don
+        System.out.println("\n=== Buoc 2: Them chi tiet hoa don ===");
+        double tongTien = 0;
+        while (true) {
+            System.out.print("Nhap ma san pham (hoac Enter de ket thuc): ");
+            String maSP = sc.nextLine();
+            if (maSP.isEmpty()) break;
+            
+            SanPham sp = dsSanPham.timSanPhamTheoMa(maSP);
+            if (sp == null) {
+                System.out.println("=> Khong tim thay san pham co ma: " + maSP);
+                continue;
+            }
+            
+            System.out.println("=> Thong tin san pham:");
+            sp.xuat();
+            System.out.println();
+            
+            System.out.print("Nhap so luong: ");
+            int sl = 0;
+            try {
+                sl = Integer.parseInt(sc.nextLine());
+            } catch (Exception ignored) {}
+            
+            if (sl <= 0) {
+                System.out.println("=> So luong khong hop le!");
+                continue;
+            }
+            
+            if (sl > sp.getSoLuong()) {
+                System.out.println("=> So luong khong du! Hien co: " + sp.getSoLuong());
+                continue;
+            }
+            
+            double dg = sp.getDonGia();
+            double tt = sl * dg;
+            
+            ChiTietHoaDon ct = new ChiTietHoaDon();
+            ct.setMaHoaDon(hd.getMaHoaDon());
+            ct.setMaSanPham(maSP);
+            ct.setSoLuong(sl);
+            ct.setDonGia(dg);
+            ct.setThanhTien(tt);
+            
+            dsCTHD.damBaoSucChua();
+            int idxCTHD = dsCTHD.getN();
+            dsCTHD.getMang()[idxCTHD] = ct;
+            dsCTHD.setN(idxCTHD + 1);
+            
+            tongTien += tt;
+            System.out.println("=> Da them chi tiet. Thanh tien: " + tt);
+        }
+        
+        hd.setTongTien(tongTien);
+        
+        // Buoc 3: Cap nhat so luong da ban
+        System.out.println("\n=== Buoc 3: Cap nhat so luong san pham ===");
+        for (int i = 0; i < dsCTHD.getN(); i++) {
+            ChiTietHoaDon ct = dsCTHD.getMang()[i];
+            if (ct.getMaHoaDon().equals(hd.getMaHoaDon())) {
+                dsSanPham.capNhatSoLuongSP(ct.getMaSanPham(), -ct.getSoLuong());
+                System.out.println("=> Da cap nhat so luong san pham: " + ct.getMaSanPham() + " (-" + ct.getSoLuong() + ")");
+            }
+        }
+        
+        // Them hoa don
+        dsHoaDon.damBaoSucChua();
+        int idxHD = dsHoaDon.getN();
+        dsHoaDon.getMang()[idxHD] = hd;
+        dsHoaDon.setN(idxHD + 1);
+        
+        System.out.println("\n=> Da them hoa don thanh cong!");
+        System.out.println("=> Tong tien: " + tongTien);
+    }
+
+    // ===== Them phieu nhap hang =====
+    private void themPhieuNhapHang() {
+        Scanner sc = new Scanner(System.in);
+        
+        // Buoc 1: Thong tin phieu nhap hang
+        System.out.println("\n=== Buoc 1: Thong tin phieu nhap hang ===");
+        PhieuNhapHang pn = new PhieuNhapHang();
+        pn.nhap();
+        
+        // Buoc 2: Them cac chi tiet nhap hang
+        System.out.println("\n=== Buoc 2: Them chi tiet nhap hang ===");
+        double tongTien = 0;
+        while (true) {
+            System.out.print("Nhap ma san pham (hoac Enter de ket thuc): ");
+            String maSP = sc.nextLine();
+            if (maSP.isEmpty()) break;
+            
+            SanPham sp = dsSanPham.timSanPhamTheoMa(maSP);
+            if (sp == null) {
+                System.out.println("=> Khong tim thay san pham co ma: " + maSP);
+                continue;
+            }
+            
+            System.out.println("=> Thong tin san pham:");
+            sp.xuat();
+            System.out.println();
+            
+            System.out.print("Nhap so luong: ");
+            int sl = 0;
+            try {
+                sl = Integer.parseInt(sc.nextLine());
+            } catch (Exception ignored) {}
+            
+            if (sl <= 0) {
+                System.out.println("=> So luong khong hop le!");
+                continue;
+            }
+            
+            System.out.print("Nhap don gia nhap: ");
+            double dg = 0;
+            try {
+                dg = Double.parseDouble(sc.nextLine());
+            } catch (Exception ignored) {}
+            
+            if (dg <= 0) {
+                System.out.println("=> Don gia khong hop le!");
+                continue;
+            }
+            
+            double tt = sl * dg;
+            
+            ChiTietNhapHang ct = new ChiTietNhapHang();
+            ct.setMaChiTietNhapHang(pn.getMaPhieuNhap() + "_" + maSP);
+            ct.setMaSanPham(maSP);
+            ct.setSoLuong(sl);
+            ct.setDonGia(dg);
+            ct.setThanhTien(tt);
+            
+            dsCTNhap.damBaoSucChua();
+            int idxCTNhap = dsCTNhap.getN();
+            dsCTNhap.getMang()[idxCTNhap] = ct;
+            dsCTNhap.setN(idxCTNhap + 1);
+            
+            tongTien += tt;
+            System.out.println("=> Da them chi tiet. Thanh tien: " + tt);
+        }
+        
+        pn.setTongTien(tongTien);
+        
+        // Buoc 3: Cap nhat so luong san pham (tang)
+        System.out.println("\n=== Buoc 3: Cap nhat so luong san pham ===");
+        for (int i = 0; i < dsCTNhap.getN(); i++) {
+            ChiTietNhapHang ct = dsCTNhap.getMang()[i];
+            if (ct.getMaChiTietNhapHang() != null && ct.getMaChiTietNhapHang().startsWith(pn.getMaPhieuNhap() + "_")) {
+                dsSanPham.capNhatSoLuongSP(ct.getMaSanPham(), ct.getSoLuong());
+                System.out.println("=> Da cap nhat so luong san pham: " + ct.getMaSanPham() + " (+" + ct.getSoLuong() + ")");
+            }
+        }
+        
+        // Them phieu nhap hang
+        dsPhieuNhap.damBaoSucChua();
+        int idxPN = dsPhieuNhap.getN();
+        dsPhieuNhap.getMang()[idxPN] = pn;
+        dsPhieuNhap.setN(idxPN + 1);
+        
+        System.out.println("\n=> Da them phieu nhap hang thanh cong!");
+        System.out.println("=> Tong tien: " + tongTien);
     }
 }
 

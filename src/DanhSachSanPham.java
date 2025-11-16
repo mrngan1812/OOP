@@ -160,6 +160,28 @@ public class DanhSachSanPham {
         System.out.printf("=> Tong gia tri: %.2f%n", tongGiaTri);
     }
 
+    // ===== Tim san pham theo ma =====
+    public SanPham timSanPhamTheoMa(String ma) {
+        for (int i = 0; i < n; i++) {
+            if (mangsanpham[i].getMaSanPham().equalsIgnoreCase(ma)) {
+                return mangsanpham[i];
+            }
+        }
+        return null;
+    }
+
+    // ===== Cap nhat so luong san pham =====
+    public void capNhatSoLuongSP(String ma, int soLuong) {
+        for (int i = 0; i < n; i++) {
+            if (mangsanpham[i].getMaSanPham().equalsIgnoreCase(ma)) {
+                int slMoi = mangsanpham[i].getSoLuong() + soLuong;
+                if (slMoi < 0) slMoi = 0;
+                mangsanpham[i].setSoLuong(slMoi);
+                return;
+            }
+        }
+    }
+
     private int readIntSafe() {
         Scanner sc = new Scanner(System.in);
         while (true) {

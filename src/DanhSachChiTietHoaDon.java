@@ -16,7 +16,11 @@ public class DanhSachChiTietHoaDon {
         this.n = 0;
     }
 
-    private void damBaoSucChua() {
+    public ChiTietHoaDon[] getMang() { return mang; }
+    public int getN() { return n; }
+    public void setN(int n) { this.n = n; }
+
+    void damBaoSucChua() {
         if (n >= mang.length) {
             ChiTietHoaDon[] moi = new ChiTietHoaDon[mang.length + 1];
             System.arraycopy(mang, 0, moi, 0, n);
