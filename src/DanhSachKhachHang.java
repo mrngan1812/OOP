@@ -97,16 +97,13 @@ public class DanhSachKhachHang implements IDanhSach {
     }
 
     // ===== Tim kiem =====
-    public void timKiem() {
+    public void timKiemTheoMa() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap tu khoa (ma/ten/sdt): ");
-        String kw = sc.nextLine();
+        System.out.print("Nhap tu khoa ma khach hang: ");
+        String ma = sc.nextLine();
         boolean found = false;
         for (int i = 0; i < n; i++) {
-            KhachHang kh = mang[i];
-            if (kh.getMaKhachHang().equalsIgnoreCase(kw)
-                    || kh.getHoTen().equalsIgnoreCase(kw)
-                    || kh.getSoDienThoai().equalsIgnoreCase(kw)) {
+            if (mang[i].getMaKhachHang().equalsIgnoreCase(ma)) {
                 System.out.println("=> Thong tin khach hang:");
                 mang[i].xuat();
                 found = true;
@@ -117,6 +114,23 @@ public class DanhSachKhachHang implements IDanhSach {
         }
     }
 
+    // ===== Tim kiem theo ten =====
+    public void timKiemTheoTen() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap tu khoa ten khach hang: ");
+        String ten = sc.nextLine();
+        boolean found = false;
+        for (int i = 0; i < n; i++) {
+            if (mang[i].getHoTen().equalsIgnoreCase(ten)) {
+                System.out.println("=> Thong tin khach hang:");
+                mang[i].xuat();
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("=> Khong tim thay khach hang!");
+        }
+    }
     // ===== Thong ke =====
     public void thongKe() {
         System.out.println("\t====== Thong ke ======");

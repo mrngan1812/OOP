@@ -60,21 +60,42 @@ public class QuanLyBanHang {
             System.out.print("Chon: ");
             String line = sc.nextLine().trim();
             int chon;
-            try { chon = Integer.parseInt(line); } catch (NumberFormatException e) { continue; }
+            try {
+                chon = Integer.parseInt(line);
+            } catch (NumberFormatException e) {
+                continue;
+            }
             switch (chon) {
-                case 1: menuQLSP(); break;
-                case 2: menuQLHoaDon(); break;
-                case 3: menuQLPhieuNhap(); break;
-                case 4: menuQLKhachHang(); break;
-                case 5: menuQLNhanVien(); break;
-                case 6: menuQLNCC(); break;
-                case 7: menuQLHang(); break;
-                case 8: menuQLLoaiSP(); break;
+                case 1:
+                    menuQLSP();
+                    break;
+                case 2:
+                    menuQLHoaDon();
+                    break;
+                case 3:
+                    menuQLPhieuNhap();
+                    break;
+                case 4:
+                    menuQLKhachHang();
+                    break;
+                case 5:
+                    menuQLNhanVien();
+                    break;
+                case 6:
+                    menuQLNCC();
+                    break;
+                case 7:
+                    menuQLHang();
+                    break;
+                case 8:
+                    menuQLLoaiSP();
+                    break;
                 case 0:
                     ghiTatCaFile();
                     System.out.println("Tam biet!");
                     return;
-                default: System.out.println("Khong hop le!");
+                default:
+                    System.out.println("Khong hop le!");
             }
         }
     }
@@ -93,19 +114,51 @@ public class QuanLyBanHang {
             System.out.println("0. Quay lai");
             System.out.print("Chon: ");
             String line = sc.nextLine().trim();
-            int c; try { c = Integer.parseInt(line); } catch (Exception e) { continue; }
+            int c;
+            try {
+                c = Integer.parseInt(line);
+            } catch (Exception e) {
+                continue;
+            }
             switch (c) {
-                case 1: dsSanPham.xuatDanhSach(); break;
-                case 2: dsSanPham.themSanPham(); break;
-                case 3: dsSanPham.xoaSanPhamTheoMa(); break;
-                case 4: dsSanPham.suaSanPhamTheoMa(); break;
-                case 5: dsSanPham.timKiem(); break;
-                case 6: dsSanPham.thongKe(); break;
-                case 0: return;
-                default: System.out.println("Khong hop le!");
+                case 1:
+                    dsSanPham.xuatDanhSach();
+                    break;
+                case 2:
+                    dsSanPham.themSanPham();
+                    break;
+                case 3:
+                    dsSanPham.xoaSanPhamTheoMa();
+                    break;
+                case 4:
+                    dsSanPham.suaSanPhamTheoMa();
+                    break;
+                case 5:
+                    int c5;
+                    System.out.println("1. Tim kiem theo ma");
+                    System.out.println("2. Tim kiem theo ten");
+                    System.out.print("Chon: ");
+                    line = sc.nextLine().trim();
+                    c5 = Integer.parseInt(line);
+                    switch (c5) {
+                        case 1:
+                            dsSanPham.timKiemTheoMa();
+                            break;
+                        case 2:
+                            dsSanPham.timKiemTheoTen();
+                            break;
+                    }
+                case 6:
+                    dsSanPham.thongKe();
+                    break;
+                case 0:
+                    return;
+                    default:
+                    System.out.println("Khong hop le!");
+                }
             }
         }
-    }
+
 
     private void menuQLHoaDon() {
         @SuppressWarnings("resource")
@@ -122,20 +175,70 @@ public class QuanLyBanHang {
             System.out.println("0. Quay lai");
             System.out.print("Chon: ");
             String line = sc.nextLine().trim();
-            int c; try { c = Integer.parseInt(line); } catch (Exception e) { continue; }
+            int c;
+            try {
+                c = Integer.parseInt(line);
+            } catch (Exception e) {
+                continue;
+            }
             switch (c) {
-                case 1: dsHoaDon.xemDanhSach(); break;
-                case 2: themHoaDon(); break;
-                case 3: dsHoaDon.xoa(); break;
-                case 4: dsHoaDon.sua(); break;
-                case 5: dsHoaDon.timKiem(); break;
-                case 6: dsHoaDon.thongKe(); break;
-                case 7: menuQLCTHD(); break;
-                case 0: return;
-                default: System.out.println("Khong hop le!");
+                case 1:
+                    dsHoaDon.xemDanhSach();
+                    break;
+                case 2:
+                    themHoaDon();
+                    break;
+                case 3:
+                    dsHoaDon.xoa();
+                    break;
+                case 4:
+                    dsHoaDon.sua();
+                    break;
+                case 5:
+                    int c5;
+                    System.out.println("1. Tim kiem theo ma");
+                    System.out.println("2. Tim kiem theo ma khach hang");
+                    System.out.print("Chon: ");
+                    line = sc.nextLine().trim();
+                    c5 = Integer.parseInt(line);
+                    switch (c5) {
+                        case 1:
+                            dsHoaDon.timKiemTheoMa();
+                            break;
+                        case 2:
+                            dsHoaDon.timKiemTheoMaKhachHang();
+                            break;
+                    }
+                        case 6:
+                            int c6;
+                            System.out.println("1. Thong ke tong tien theo ngay");
+                            System.out.println("2. Thong ke theo khach hang va nam");
+                            System.out.print("Chon: ");
+                            line = sc.nextLine().trim();
+                            c6 = Integer.parseInt(line);
+                            switch (c6) {
+                                case 1:
+                                    dsHoaDon.thongKeTongTienTuNgayAToNgayB();
+                                    break;
+                                case 2:
+                                    dsHoaDon.thongKeTheoKhachHangVaNam();
+                                    break;
+                                case 0:
+                                    return;
+                                default:
+                                    System.out.println("Khong hop le!");
+                            }
+                            break;
+                        case 7:
+                            menuQLCTHD();
+                            break;
+                        case 0:
+                            return;
+                        default:
+                            System.out.println("Khong hop le!");
+                    }
             }
         }
-    }
 
     private void menuQLCTHD() {
         @SuppressWarnings("resource")
@@ -151,19 +254,51 @@ public class QuanLyBanHang {
             System.out.println("0. Quay lai");
             System.out.print("Chon: ");
             String line = sc.nextLine().trim();
-            int c; try { c = Integer.parseInt(line); } catch (Exception e) { continue; }
+            int c;
+            try {
+                c = Integer.parseInt(line);
+            } catch (Exception e) {
+                continue;
+            }
             switch (c) {
-                case 1: dsCTHD.xemDanhSach(); break;
-                case 2: dsCTHD.them(); break;
-                case 3: dsCTHD.xoa(); break;
-                case 4: dsCTHD.sua(); break;
-                case 5: dsCTHD.timKiem(); break;
-                case 6: dsCTHD.thongKe(); break;
-                case 0: return;
-                default: System.out.println("Khong hop le!");
+                case 1:
+                    dsCTHD.xemDanhSach();
+                    break;
+                case 2:
+                    dsCTHD.them();
+                    break;
+                case 3:
+                    dsCTHD.xoa();
+                    break;
+                case 4:
+                    dsCTHD.sua();
+                    break;
+                case 5:
+                    int c5;
+                    System.out.println("1. Tim kiem theo ma hoa don");
+                    System.out.println("2. Tim kiem theo ma san pham");
+                    System.out.print("Chon: ");
+                    line = sc.nextLine().trim();
+                    c5 = Integer.parseInt(line);
+                    switch (c5) {
+                        case 1:
+                            dsCTHD.timKiemTheoMaHoaDon();
+                            break;
+                        case 2:
+                            dsCTHD.timKiemTheoMaSanPham();
+                            break;
+                    }
+                    break;
+                case 6:
+                    dsCTHD.thongKe();
+                    break;
+                case 0:
+                    return;
+                        default:
+                            System.out.println("Khong hop le!");
+                    }
             }
         }
-    }
 
     private void menuQLPhieuNhap() {
         @SuppressWarnings("resource")
@@ -180,20 +315,53 @@ public class QuanLyBanHang {
             System.out.println("0. Quay lai");
             System.out.print("Chon: ");
             String line = sc.nextLine().trim();
-            int c; try { c = Integer.parseInt(line); } catch (Exception e) { continue; }
+            int c;
+            try {
+                c = Integer.parseInt(line);
+            } catch (Exception e) {
+                continue;
+            }
             switch (c) {
-                case 1: dsPhieuNhap.xemDanhSach(); break;
-                case 2: themPhieuNhapHang(); break;
-                case 3: dsPhieuNhap.xoa(); break;
-                case 4: dsPhieuNhap.sua(); break;
-                case 5: dsPhieuNhap.timKiem(); break;
-                case 6: dsPhieuNhap.thongKe(); break;
-                case 7: menuQLCTNhap(); break;
-                case 0: return;
-                default: System.out.println("Khong hop le!");
+                case 1:
+                    dsPhieuNhap.xemDanhSach();
+                    break;
+                case 2:
+                    themPhieuNhapHang();
+                    break;
+                case 3:
+                    dsPhieuNhap.xoa();
+                    break;
+                case 4:
+                    dsPhieuNhap.sua();
+                    break;
+                case 5:
+                    int c5;
+                    System.out.println("1. Tim kiem theo ma phieu nhap hang");
+                    System.out.println("2. Tim kiem theo ma nhan vien");
+                    System.out.print("Chon: ");
+                    line = sc.nextLine().trim();
+                    c5 = Integer.parseInt(line);
+                    switch (c5) {
+                        case 1:
+                            dsPhieuNhap.timKiemTheoMa();
+                            break;
+                        case 2:
+                            dsPhieuNhap.timKiemTheoMaNhanVien();
+                            break;
+                    }
+                        case 6:
+                            dsPhieuNhap.thongKe();
+                            break;
+                        case 7:
+                            menuQLCTNhap();
+                            break;
+                        case 0:
+                            return;
+                        default:
+                            System.out.println("Khong hop le!");
+                    }
             }
         }
-    }
 
     private void menuQLCTNhap() {
         @SuppressWarnings("resource")
@@ -209,19 +377,50 @@ public class QuanLyBanHang {
             System.out.println("0. Quay lai");
             System.out.print("Chon: ");
             String line = sc.nextLine().trim();
-            int c; try { c = Integer.parseInt(line); } catch (Exception e) { continue; }
+            int c;
+            try {
+                c = Integer.parseInt(line);
+            } catch (Exception e) {
+                continue;
+            }
             switch (c) {
-                case 1: dsCTNhap.xemDanhSach(); break;
-                case 2: dsCTNhap.them(); break;
-                case 3: dsCTNhap.xoa(); break;
-                case 4: dsCTNhap.sua(); break;
-                case 5: dsCTNhap.timKiem(); break;
-                case 6: dsCTNhap.thongKe(); break;
-                case 0: return;
-                default: System.out.println("Khong hop le!");
+                case 1:
+                    dsCTNhap.xemDanhSach();
+                    break;
+                case 2:
+                    dsCTNhap.them();
+                    break;
+                case 3:
+                    dsCTNhap.xoa();
+                    break;
+                case 4:
+                    dsCTNhap.sua();
+                    break;
+                case 5:
+                    int c5;
+                    System.out.println("1. Tim kiem theo ma chi tiet nhap hang");
+                    System.out.println("2. Tim kiem theo ma san pham");
+                    System.out.print("Chon: ");
+                    line = sc.nextLine().trim();
+                    c5 = Integer.parseInt(line);
+                    switch (c5) {
+                        case 1:
+                            dsCTNhap.timKiemTheoMa();
+                            break;
+                        case 2:
+                            dsCTNhap.timKiemTheoMaSanPham();
+                            break;
+                    }
+                        case 6:
+                            dsCTNhap.thongKe();
+                            break;
+                        case 0:
+                            return;
+                        default:
+                            System.out.println("Khong hop le!");
+                    }
             }
         }
-    }
 
     private void menuQLLoaiSP() {
         @SuppressWarnings("resource")
@@ -237,19 +436,51 @@ public class QuanLyBanHang {
             System.out.println("0. Quay lai");
             System.out.print("Chon: ");
             String line = sc.nextLine().trim();
-            int c; try { c = Integer.parseInt(line); } catch (Exception e) { continue; }
+            int c;
+            try {
+                c = Integer.parseInt(line);
+            } catch (Exception e) {
+                continue;
+            }
             switch (c) {
-                case 1: dsLoai.xemDanhSach(); break;
-                case 2: dsLoai.them(); break;
-                case 3: dsLoai.xoa(); break;
-                case 4: dsLoai.sua(); break;
-                case 5: dsLoai.timKiem(); break;
-                case 6: dsLoai.thongKe(); break;
-                case 0: return;
-                default: System.out.println("Khong hop le!");
+                case 1:
+                    dsLoai.xemDanhSach();
+                    break;
+                case 2:
+                    dsLoai.them();
+                    break;
+                case 3:
+                    dsLoai.xoa();
+                    break;
+                case 4:
+                    dsLoai.sua();
+                    break;
+                case 5:
+                    int c5;
+                    System.out.println("1. Tim kiem theo ma khach hang");
+                    System.out.println("2. Tim kiem theo ma loai san pham");
+                    System.out.print("Chon: ");
+                    line = sc.nextLine().trim();
+                    c5 = Integer.parseInt(line);
+                    switch (c5) {
+                        case 1:
+                            dsLoai.timKiemTheoMa();
+                            break;
+                        case 2:
+                            dsLoai.timKiemTheoTen();
+                            break;
+
+                    }
+                        case 6:
+                            dsLoai.thongKe();
+                            break;
+                        case 0:
+                            return;
+                        default:
+                            System.out.println("Khong hop le!");
+                    }
             }
         }
-    }
 
     private void menuQLKhachHang() {
         @SuppressWarnings("resource")
@@ -265,19 +496,50 @@ public class QuanLyBanHang {
             System.out.println("0. Quay lai");
             System.out.print("Chon: ");
             String line = sc.nextLine().trim();
-            int c; try { c = Integer.parseInt(line); } catch (Exception e) { continue; }
+            int c;
+            try {
+                c = Integer.parseInt(line);
+            } catch (Exception e) {
+                continue;
+            }
             switch (c) {
-                case 1: dsKhachHang.xemDanhSach(); break;
-                case 2: dsKhachHang.them(); break;
-                case 3: dsKhachHang.xoa(); break;
-                case 4: dsKhachHang.sua(); break;
-                case 5: dsKhachHang.timKiem(); break;
-                case 6: dsKhachHang.thongKe(); break;
-                case 0: return;
-                default: System.out.println("Khong hop le!");
+                case 1:
+                    dsKhachHang.xemDanhSach();
+                    break;
+                case 2:
+                    dsKhachHang.them();
+                    break;
+                case 3:
+                    dsKhachHang.xoa();
+                    break;
+                case 4:
+                    dsKhachHang.sua();
+                    break;
+                case 5:
+                    int c5;
+                    System.out.println("1. Tim kiem theo ma nhan vien");
+                    System.out.println("2. Tim kiem theo ten khach hang");
+                    System.out.print("Chon: ");
+                    line = sc.nextLine().trim();
+                    c5 = Integer.parseInt(line);
+                    switch (c5) {
+                        case 1:
+                            dsNhanVien.timKiemTheoMa();
+                            break;
+                        case 2:
+                            dsNhanVien.timKiemTheoTen();
+                            break;
+                    }
+                        case 6:
+                            dsKhachHang.thongKe();
+                            break;
+                        case 0:
+                            return;
+                        default:
+                            System.out.println("Khong hop le!");
+                    }
             }
         }
-    }
 
     private void menuQLNhanVien() {
         @SuppressWarnings("resource")
@@ -293,19 +555,51 @@ public class QuanLyBanHang {
             System.out.println("0. Quay lai");
             System.out.print("Chon: ");
             String line = sc.nextLine().trim();
-            int c; try { c = Integer.parseInt(line); } catch (Exception e) { continue; }
+            int c;
+            try {
+                c = Integer.parseInt(line);
+            } catch (Exception e) {
+                continue;
+            }
             switch (c) {
-                case 1: dsNhanVien.xemDanhSach(); break;
-                case 2: dsNhanVien.them(); break;
-                case 3: dsNhanVien.xoa(); break;
-                case 4: dsNhanVien.sua(); break;
-                case 5: dsNhanVien.timKiem(); break;
-                case 6: dsNhanVien.thongKe(); break;
-                case 0: return;
-                default: System.out.println("Khong hop le!");
+                case 1:
+                    dsNhanVien.xemDanhSach();
+                    break;
+                case 2:
+                    dsNhanVien.them();
+                    break;
+                case 3:
+                    dsNhanVien.xoa();
+                    break;
+                case 4:
+                    dsNhanVien.sua();
+                    break;
+                case 5:
+                    int c5;
+                    System.out.println("1. Tim kiem theo ma nhan vien");
+                    System.out.println("2. Tim kiem theo ten nhan vien");
+                    System.out.print("Chon: ");
+                    line = sc.nextLine().trim();
+                    c5 = Integer.parseInt(line);
+                    switch (c5) {
+                        case 1:
+                            dsNCC.timKiemTheoMa();
+                            break;
+                        case 2:
+                            dsNCC.timKiemTheoTen();
+                            break;
+
+                    }
+                        case 6:
+                            dsNhanVien.thongKe();
+                            break;
+                        case 0:
+                            return;
+                        default:
+                            System.out.println("Khong hop le!");
+                    }
             }
         }
-    }
 
     private void menuQLNCC() {
         @SuppressWarnings("resource")
@@ -321,19 +615,50 @@ public class QuanLyBanHang {
             System.out.println("0. Quay lai");
             System.out.print("Chon: ");
             String line = sc.nextLine().trim();
-            int c; try { c = Integer.parseInt(line); } catch (Exception e) { continue; }
+            int c;
+            try {
+                c = Integer.parseInt(line);
+            } catch (Exception e) {
+                continue;
+            }
             switch (c) {
-                case 1: dsNCC.xemDanhSach(); break;
-                case 2: dsNCC.them(); break;
-                case 3: dsNCC.xoa(); break;
-                case 4: dsNCC.sua(); break;
-                case 5: dsNCC.timKiem(); break;
-                case 6: dsNCC.thongKe(); break;
-                case 0: return;
-                default: System.out.println("Khong hop le!");
+                case 1:
+                    dsNCC.xemDanhSach();
+                    break;
+                case 2:
+                    dsNCC.them();
+                    break;
+                case 3:
+                    dsNCC.xoa();
+                    break;
+                case 4:
+                    dsNCC.sua();
+                    break;
+                case 5:
+                    int c5;
+                    System.out.println("1. Tim kiem theo ma nha cung cap");
+                    System.out.println("2. Tim kiem theo ten nha cung cap");
+                    System.out.print("Chon: ");
+                    line = sc.nextLine().trim();
+                    c5 = Integer.parseInt(line);
+                    switch (c5) {
+                        case 1:
+                            dsHang.timKiemTheoMa();
+                            break;
+                        case 2:
+                            dsHang.timKiemTheoTen();
+                            break;
+                    }
+                        case 6:
+                            dsNCC.thongKe();
+                            break;
+                        case 0:
+                            return;
+                        default:
+                            System.out.println("Khong hop le!");
+                    }
             }
         }
-    }
 
     private void menuQLHang() {
         @SuppressWarnings("resource")
@@ -349,100 +674,134 @@ public class QuanLyBanHang {
             System.out.println("0. Quay lai");
             System.out.print("Chon: ");
             String line = sc.nextLine().trim();
-            int c; try { c = Integer.parseInt(line); } catch (Exception e) { continue; }
+            int c;
+            try {
+                c = Integer.parseInt(line);
+            } catch (Exception e) {
+                continue;
+            }
             switch (c) {
-                case 1: dsHang.xemDanhSach(); break;
-                case 2: dsHang.them(); break;
-                case 3: dsHang.xoa(); break;
-                case 4: dsHang.sua(); break;
-                case 5: dsHang.timKiem(); break;
-                case 6: dsHang.thongKe(); break;
-                case 0: return;
-                default: System.out.println("Khong hop le!");
+                case 1:
+                    dsHang.xemDanhSach();
+                    break;
+                case 2:
+                    dsHang.them();
+                    break;
+                case 3:
+                    dsHang.xoa();
+                    break;
+                case 4:
+                    dsHang.sua();
+                    break;
+                case 5:
+                    int c5;
+                    System.out.println("1. Tim kiem theo ma hang san pham");
+                    System.out.println("2. Tim kiem theo ten hang san pham");
+                    System.out.print("Chon: ");
+                    line = sc.nextLine().trim();
+                    c5 = Integer.parseInt(line);
+                    switch (c5) {
+                        case 1:
+                            dsHang.timKiemTheoMa();
+                            break;
+                        case 2:
+                            dsHang.timKiemTheoTen();
+                            break;
+                    }
+                        case 6:
+                            dsHang.thongKe();
+                            break;
+                        case 0:
+                            return;
+                        default:
+                            System.out.println("Khong hop le!");
+                    }
             }
         }
-    }
 
     // ===== Them hoa don =====
     private void themHoaDon() {
         Scanner sc = new Scanner(System.in);
-        
+
         // Buoc 1: Thong tin hoa don
         System.out.println("\n=== Buoc 1: Thong tin hoa don ===");
         HoaDon hd = new HoaDon();
         hd.nhap();
-        
+
         // Buoc 2: Them cac chi tiet hoa don
         System.out.println("\n=== Buoc 2: Them chi tiet hoa don ===");
         double tongTien = 0;
         while (true) {
             System.out.print("Nhap ma san pham (hoac Enter de ket thuc): ");
             String maSP = sc.nextLine();
-            if (maSP.isEmpty()) break;
-            
+            if (maSP.isEmpty())
+                break;
+
             SanPham sp = dsSanPham.timSanPhamTheoMa(maSP);
             if (sp == null) {
                 System.out.println("=> Khong tim thay san pham co ma: " + maSP);
                 continue;
             }
-            
+
             System.out.println("=> Thong tin san pham:");
             sp.xuat();
             System.out.println();
-            
+
             System.out.print("Nhap so luong: ");
             int sl = 0;
             try {
                 sl = Integer.parseInt(sc.nextLine());
-            } catch (Exception ignored) {}
-            
+            } catch (Exception ignored) {
+            }
+
             if (sl <= 0) {
                 System.out.println("=> So luong khong hop le!");
                 continue;
             }
-            
+
             if (sl > sp.getSoLuong()) {
                 System.out.println("=> So luong khong du! Hien co: " + sp.getSoLuong());
                 continue;
             }
-            
+
             double dg = sp.getDonGia();
             double tt = sl * dg;
-            
+
             ChiTietHoaDon ct = new ChiTietHoaDon();
             ct.setMaHoaDon(hd.getMaHoaDon());
             ct.setMaSanPham(maSP);
             ct.setSoLuong(sl);
             ct.setDonGia(dg);
             ct.setThanhTien(tt);
-            
+
             dsCTHD.damBaoSucChua();
             int idxCTHD = dsCTHD.getN();
             dsCTHD.getMang()[idxCTHD] = ct;
             dsCTHD.setN(idxCTHD + 1);
-            
+
             tongTien += tt;
             System.out.println("=> Da them chi tiet. Thanh tien: " + tt);
         }
-        
+
         hd.setTongTien(tongTien);
-        
+
         // Buoc 3: Cap nhat so luong da ban
         System.out.println("\n=== Buoc 3: Cap nhat so luong san pham ===");
         for (int i = 0; i < dsCTHD.getN(); i++) {
             ChiTietHoaDon ct = dsCTHD.getMang()[i];
             if (ct.getMaHoaDon().equals(hd.getMaHoaDon())) {
                 dsSanPham.capNhatSoLuongSP(ct.getMaSanPham(), -ct.getSoLuong());
-                System.out.println("=> Da cap nhat so luong san pham: " + ct.getMaSanPham() + " (-" + ct.getSoLuong() + ")");
+                System.out.println(
+                        "=> Da cap nhat so luong san pham: " + ct.getMaSanPham() + " (-" + ct.getSoLuong() + ")");
             }
         }
-        
+
         // Them hoa don
         dsHoaDon.damBaoSucChua();
         int idxHD = dsHoaDon.getN();
         dsHoaDon.getMang()[idxHD] = hd;
         dsHoaDon.setN(idxHD + 1);
-        
+
         System.out.println("\n=> Da them hoa don thanh cong!");
         System.out.println("=> Tong tien: " + tongTien);
     }
@@ -450,91 +809,93 @@ public class QuanLyBanHang {
     // ===== Them phieu nhap hang =====
     private void themPhieuNhapHang() {
         Scanner sc = new Scanner(System.in);
-        
+
         // Buoc 1: Thong tin phieu nhap hang
         System.out.println("\n=== Buoc 1: Thong tin phieu nhap hang ===");
         PhieuNhapHang pn = new PhieuNhapHang();
         pn.nhap();
-        
+
         // Buoc 2: Them cac chi tiet nhap hang
         System.out.println("\n=== Buoc 2: Them chi tiet nhap hang ===");
         double tongTien = 0;
         while (true) {
             System.out.print("Nhap ma san pham (hoac Enter de ket thuc): ");
             String maSP = sc.nextLine();
-            if (maSP.isEmpty()) break;
-            
+            if (maSP.isEmpty())
+                break;
+
             SanPham sp = dsSanPham.timSanPhamTheoMa(maSP);
             if (sp == null) {
                 System.out.println("=> Khong tim thay san pham co ma: " + maSP);
                 continue;
             }
-            
+
             System.out.println("=> Thong tin san pham:");
             sp.xuat();
             System.out.println();
-            
+
             System.out.print("Nhap so luong: ");
             int sl = 0;
             try {
                 sl = Integer.parseInt(sc.nextLine());
-            } catch (Exception ignored) {}
-            
+            } catch (Exception ignored) {
+            }
+
             if (sl <= 0) {
                 System.out.println("=> So luong khong hop le!");
                 continue;
             }
-            
+
             System.out.print("Nhap don gia nhap: ");
             double dg = 0;
             try {
                 dg = Double.parseDouble(sc.nextLine());
-            } catch (Exception ignored) {}
-            
+            } catch (Exception ignored) {
+            }
+
             if (dg <= 0) {
                 System.out.println("=> Don gia khong hop le!");
                 continue;
             }
-            
+
             double tt = sl * dg;
-            
+
             ChiTietNhapHang ct = new ChiTietNhapHang();
             ct.setMaChiTietNhapHang(pn.getMaPhieuNhap() + "_" + maSP);
             ct.setMaSanPham(maSP);
             ct.setSoLuong(sl);
             ct.setDonGia(dg);
             ct.setThanhTien(tt);
-            
+
             dsCTNhap.damBaoSucChua();
             int idxCTNhap = dsCTNhap.getN();
             dsCTNhap.getMang()[idxCTNhap] = ct;
             dsCTNhap.setN(idxCTNhap + 1);
-            
+
             tongTien += tt;
             System.out.println("=> Da them chi tiet. Thanh tien: " + tt);
         }
-        
+
         pn.setTongTien(tongTien);
-        
+
         // Buoc 3: Cap nhat so luong san pham (tang)
         System.out.println("\n=== Buoc 3: Cap nhat so luong san pham ===");
         for (int i = 0; i < dsCTNhap.getN(); i++) {
             ChiTietNhapHang ct = dsCTNhap.getMang()[i];
             if (ct.getMaChiTietNhapHang() != null && ct.getMaChiTietNhapHang().startsWith(pn.getMaPhieuNhap() + "_")) {
                 dsSanPham.capNhatSoLuongSP(ct.getMaSanPham(), ct.getSoLuong());
-                System.out.println("=> Da cap nhat so luong san pham: " + ct.getMaSanPham() + " (+" + ct.getSoLuong() + ")");
+                System.out.println(
+                        "=> Da cap nhat so luong san pham: " + ct.getMaSanPham() + " (+" + ct.getSoLuong() + ")");
             }
         }
-        
+
         // Them phieu nhap hang
         dsPhieuNhap.damBaoSucChua();
         int idxPN = dsPhieuNhap.getN();
         dsPhieuNhap.getMang()[idxPN] = pn;
         dsPhieuNhap.setN(idxPN + 1);
-        
+
         System.out.println("\n=> Da them phieu nhap hang thanh cong!");
         System.out.println("=> Tong tien: " + tongTien);
     }
 }
-
-

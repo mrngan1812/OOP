@@ -91,16 +91,31 @@ public class DanhSachNhanVien {
     }
 
     // ===== Tim kiem =====
-    public void timKiem() {
+    public void timKiemTheoMa() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap tu khoa (ma/ten/sdt): ");
-        String kw = sc.nextLine();
+        System.out.print("Nhap tu khoa ma nhan vien: ");
+        String ma = sc.nextLine();
         boolean found = false;
         for (int i = 0; i < n; i++) {
-            NhanVien nv = mang[i];
-            if (nv.getMaNhanVien().equalsIgnoreCase(kw)
-                    || nv.getHoTen().equalsIgnoreCase(kw)
-                    || nv.getSoDienThoai().equalsIgnoreCase(kw)) {
+            if (mang[i].getMaNhanVien().equalsIgnoreCase(ma)) {
+                System.out.println("=> Thong tin nhan vien:");
+                mang[i].xuat();
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("=> Khong tim thay nhan vien!");
+        }
+    }
+
+    // ===== Tim kiem theo ten =====
+    public void timKiemTheoTen() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap tu khoa ten nhan vien: ");
+        String ten = sc.nextLine();
+        boolean found = false;
+        for (int i = 0; i < n; i++) {
+            if (mang[i].getHoTen().equalsIgnoreCase(ten)) {
                 System.out.println("=> Thong tin nhan vien:");
                 mang[i].xuat();
                 found = true;

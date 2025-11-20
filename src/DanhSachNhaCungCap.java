@@ -91,16 +91,13 @@ public class DanhSachNhaCungCap {
     }
 
     // ===== Tim kiem =====
-    public void timKiem() {
+    public void timKiemTheoMa() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap tu khoa (ma/ten/sdt): ");
-        String kw = sc.nextLine();
+        System.out.print("Nhap tu khoa ma nha cung cap: ");
+        String ma = sc.nextLine();
         boolean found = false;
         for (int i = 0; i < n; i++) {
-            NhaCungCap ncc = mang[i];
-            if (ncc.getMaNCC().equalsIgnoreCase(kw)
-                    || ncc.getTenNCC().equalsIgnoreCase(kw)
-                    || ncc.getSoDienThoai().equalsIgnoreCase(kw)) {
+            if (mang[i].getMaNCC().equalsIgnoreCase(ma)) {
                 System.out.println("=> Thong tin nha cung cap:");
                 mang[i].xuat();
                 found = true;
@@ -111,6 +108,23 @@ public class DanhSachNhaCungCap {
         }
     }
 
+    // ===== Tim kiem theo ten =====
+    public void timKiemTheoTen() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap tu khoa ten nha cung cap: ");
+        String ten = sc.nextLine();
+        boolean found = false;
+        for (int i = 0; i < n; i++) {
+            if (mang[i].getTenNCC().equalsIgnoreCase(ten)) {
+                System.out.println("=> Thong tin nha cung cap:");
+                mang[i].xuat();
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("=> Khong tim thay nha cung cap!");
+        }
+    }
     // ===== Thong ke =====
     public void thongKe() {
         System.out.println("\t====== Thong ke ======");

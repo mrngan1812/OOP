@@ -99,14 +99,31 @@ public class DanhSachChiTietHoaDon {
     }
 
     // ===== Tim kiem =====
-    public void timKiem() {
+    public void timKiemTheoMaHoaDon() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap tu khoa (maHD/maSP): ");
-        String kw = sc.nextLine();
+        System.out.print("Nhap tu khoa ma hoa don: ");
+        String ma = sc.nextLine();
         boolean found = false;
         for (int i = 0; i < n; i++) {
-            ChiTietHoaDon ct = mang[i];
-            if (ct.getMaHoaDon().equalsIgnoreCase(kw) || ct.getMaSanPham().equalsIgnoreCase(kw)) {
+            if (mang[i].getMaHoaDon().equalsIgnoreCase(ma)) {
+                System.out.println("=> Thong tin chi tiet hoa don:");
+                mang[i].xuat();
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("=> Khong tim thay chi tiet hoa don!");
+        }
+    }
+
+    // ===== Tim kiem theo ma san pham =====
+    public void timKiemTheoMaSanPham() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap tu khoa ma san pham: ");
+        String ma = sc.nextLine();
+        boolean found = false;
+        for (int i = 0; i < n; i++) {
+            if (mang[i].getMaSanPham().equalsIgnoreCase(ma)) {
                 System.out.println("=> Thong tin chi tiet hoa don:");
                 mang[i].xuat();
                 found = true;

@@ -90,17 +90,32 @@ public class DanhSachHangSanPham {
         }
     }
 
-    // ===== Tim kiem =====
-    public void timKiem() {
+    // ===== Tim kiem theo ma =====
+    public void timKiemTheoMa() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap tu khoa (ma/ten/quoc gia): ");
-        String kw = sc.nextLine();
+        System.out.print("Nhap tu khoa ma hang san pham: ");
+        String ma = sc.nextLine();
         boolean found = false;
         for (int i = 0; i < n; i++) {
-            HangSanPham h = mang[i];
-            if (h.getMaHang().equalsIgnoreCase(kw)
-                    || h.getTenHang().equalsIgnoreCase(kw)
-                    || h.getQuocGia().equalsIgnoreCase(kw)) {
+            if (mang[i].getMaHang().equalsIgnoreCase(ma)) {
+                System.out.println("=> Thong tin hang san pham:");
+                mang[i].xuat();
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("=> Khong tim thay hang san pham!");
+        }
+    }
+
+    // ===== Tim kiem theo ten =====
+    public void timKiemTheoTen() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap tu khoa ten hang san pham: ");
+        String ten = sc.nextLine();
+        boolean found = false;
+        for (int i = 0; i < n; i++) {
+            if (mang[i].getTenHang().equalsIgnoreCase(ten)) {
                 System.out.println("=> Thong tin hang san pham:");
                 mang[i].xuat();
                 found = true;

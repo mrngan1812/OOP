@@ -128,14 +128,13 @@ public class DanhSachSanPham {
     }
 
     // ===== Tim kiem theo ma hoac ten =====
-    public void timKiem() {
+    public void timKiemTheoMa() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap tu khoa (ma/ten): ");
-        String kw = sc.nextLine();
+        System.out.print("Nhap tu khoa ma san pham: ");
+        String ma = sc.nextLine();
         boolean found = false;
         for (int i = 0; i < n; i++) {
-            if (mangsanpham[i].getMaSanPham().equalsIgnoreCase(kw)
-                    || mangsanpham[i].getTenSanPham().equalsIgnoreCase(kw)) {
+            if (mangsanpham[i].getMaSanPham().equalsIgnoreCase(ma)) {
                 System.out.println("=> Thong tin san pham:");
                 mangsanpham[i].xuat();
                 found = true;
@@ -145,7 +144,23 @@ public class DanhSachSanPham {
             System.out.println("=> Khong tim thay san pham!");
         }
     }
-
+    // ===== Tim kiem theo ten =====
+    public void timKiemTheoTen() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap tu khoa ten san pham: ");
+        String ten = sc.nextLine();
+        boolean found = false;
+        for (int i = 0; i < n; i++) {
+            if (mangsanpham[i].getTenSanPham().equalsIgnoreCase(ten)) {
+                System.out.println("=> Thong tin san pham:");
+                mangsanpham[i].xuat();
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("=> Khong tim thay san pham!");
+        }
+    }
 
     // ===== Thong ke =====
     public void thongKe() {
@@ -169,6 +184,7 @@ public class DanhSachSanPham {
         }
         return null;
     }
+
 
     // ===== Cap nhat so luong san pham =====
     public void capNhatSoLuongSP(String ma, int soLuong) {

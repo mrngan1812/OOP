@@ -95,17 +95,14 @@ public class DanhSachPhieuNhapHang {
     }
 
     // ===== Tim kiem =====
-    public void timKiem() {
+    public void timKiemTheoMa() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap tu khoa (maPN/maNV/maNCC/ngay): ");
-        String kw = sc.nextLine();
+        System.out.print("Nhap tu khoa ma phieu nhap: ");
+        String ma = sc.nextLine();
         boolean found = false;
         for (int i = 0; i < n; i++) {
             PhieuNhapHang pn = mang[i];
-            if (pn.getMaPhieuNhap().equalsIgnoreCase(kw)
-                    || pn.getMaNhanVien().equalsIgnoreCase(kw)
-                    || pn.getMaNCC().equalsIgnoreCase(kw)
-                    || pn.getNgayNhap().equalsIgnoreCase(kw)) {
+            if (pn.getMaPhieuNhap().equalsIgnoreCase(ma)) {
                 System.out.println("=> Thong tin phieu nhap hang:");
                 mang[i].xuat();
                 found = true;
@@ -115,7 +112,24 @@ public class DanhSachPhieuNhapHang {
             System.out.println("=> Khong tim thay phieu nhap hang!");
         }
     }
-
+    // ===== Tim kiem theo ma nhan vien =====
+    public void timKiemTheoMaNhanVien() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap tu khoa ma nhan vien: ");
+        String ma = sc.nextLine();
+        boolean found = false;
+        for (int i = 0; i < n; i++) {
+            PhieuNhapHang pn = mang[i];
+            if (pn.getMaNhanVien().equalsIgnoreCase(ma)) {
+                System.out.println("=> Thong tin phieu nhap hang:");
+                mang[i].xuat();
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("=> Khong tim thay phieu nhap hang!");
+        }
+    }
     // ===== Thong ke =====
     public void thongKe() {
         double tongChiPhi = 0;
@@ -173,6 +187,55 @@ public class DanhSachPhieuNhapHang {
             System.out.println("Loi doc file: " + e.getMessage());
         }
     }
-}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+    //tim them kh
+    public timKiemTheoMaKh(){
+    Scanner sc = Scanner(System.in)
+    boolean found;
+    String ma sc.nextLine();
+    for(int i = 0; i < n; i++){
+        if(mang[i].getmakhachhang().equalsIgnoreCase(ma))
+        System.out.println("thong tin cua phieu nhap hang")
+        mang[i].xuat();
+        }
+        System.out.println("khong tim thay thong tin phieu nhap")
+    }
+
+ 
+    //tinh tong  theo thang, nam 
+    public void tongTienTheoThang(){
+        double tong = 0;
+        System.out.println("chon thang: ");
+        for(int i = 0; i < n; i++){
+        
+        }
+    }
+
+
+
+*/
+}
 

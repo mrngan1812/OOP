@@ -3,7 +3,8 @@ public interface IDanhSach {
     void them();
     void xoa();
     void sua();
-    void timKiem();
+    void timKiemTheoMa();
+    void timKiemTheoTen();
     void thongKe();
     void ghiFile();
     void docFile();
